@@ -4,46 +4,82 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Novo catálogo do Departamento de Português</title>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 <style>
   html, body { margin: 0; padding: 0; background: transparent; }
   .banda {
     box-sizing: border-box;
+    position: relative;
     height: 84px;
+    display: flex;
+    align-items: stretch;
     background: #CDD1EA;
     border: 1px solid #D3D8E3;
+    border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-  .faixa {
-    display: inline-flex;
-    animation: rodar 40s linear infinite;
-  }
-  .banda:hover .faixa { animation-play-state: paused; }
-  .faixa span {
-    padding-right: 120px;
-    color: #2E3460;
     font-family: Lato, 'Segoe UI', Calibri, Carlito, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 32px;
-    font-weight: 700;
+    color: #2E3460;
   }
-  @keyframes rodar {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+  /* risca tricolor em baixo */
+  .banda::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+    background: linear-gradient(90deg, #3D4380 0 33.3%, #475766 33.3% 66.6%, #2E6B60 66.6% 100%);
+    opacity: .55;
   }
+  /* etiqueta fixa à esquerda */
+  .etiqueta {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 26px 0 22px;
+    background: #F9FAFC;
+    border-right: 1px solid #D3D8E3;
+    font-family: 'Playfair Display', 'Palatino Linotype', Georgia, serif;
+    font-style: italic; font-weight: 600;
+    font-size: 26px; color: #3D4380;
+    z-index: 2;
+  }
+  .etiqueta .icone { font-style: normal; font-size: 30px; display: inline-block; animation: balancar 3s ease-in-out infinite; }
+  /* zona que roda */
+  .janela {
+    position: relative; flex: 1 1 auto; overflow: hidden;
+    display: flex; align-items: center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
+  }
+  .faixa { display: inline-flex; white-space: nowrap; animation: rodar 38s linear infinite; }
+  .banda:hover .faixa, .banda:hover .icone { animation-play-state: paused; }
+  .item { font-size: 28px; padding-right: 40px; }
+  .item em {
+    font-family: 'Playfair Display', 'Palatino Linotype', Georgia, serif;
+    font-weight: 600; color: #3D4380;
+  }
+  .item .sala { color: #2E6B60; font-weight: 700; }
+  .estrela { color: #2E6B60; font-size: 22px; padding-right: 40px; align-self: center; }
+  @keyframes rodar { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes balancar { 0%,100% { transform: rotate(0); } 10% { transform: rotate(-12deg); } 20% { transform: rotate(10deg); } 30% { transform: rotate(0); } }
   @media (max-width: 600px) {
     .banda { height: 64px; }
-    .faixa span { font-size: 22px; padding-right: 70px; }
+    .etiqueta { font-size: 18px; padding: 0 14px; }
+    .etiqueta .texto { display: none; }
+    .item { font-size: 20px; }
   }
 </style>
 </head>
 <body>
-  <div class="banda" role="marquee" aria-label="Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3). Consulte-o na secção «Recursos».">
-    <div class="faixa" aria-hidden="true">
-      <span>📢 Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3)! &nbsp;•&nbsp; Consulte-o na secção «Recursos». 📚</span>
-      <span>📢 Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3)! &nbsp;•&nbsp; Consulte-o na secção «Recursos». 📚</span>
+  <div class="banda" role="marquee" aria-label="Novidade: já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3). Consulte-o na secção «Recursos».">
+    <div class="etiqueta" aria-hidden="true"><span class="icone">📚</span><span class="texto">Novidade</span></div>
+    <div class="janela" aria-hidden="true">
+      <div class="faixa">
+        <span class="item">Já está disponível o <em>novo catálogo</em> do Departamento de Português: biblioteca da EOI e biblioteca de turma <span class="sala">(no armário da sala 2.3)</span></span>
+        <span class="estrela">✦</span>
+        <span class="item">Consulte-o na secção <em>«Recursos»</em></span>
+        <span class="estrela">✦</span>
+        <span class="item">Já está disponível o <em>novo catálogo</em> do Departamento de Português: biblioteca da EOI e biblioteca de turma <span class="sala">(no armário da sala 2.3)</span></span>
+        <span class="estrela">✦</span>
+        <span class="item">Consulte-o na secção <em>«Recursos»</em></span>
+        <span class="estrela">✦</span>
+      </div>
     </div>
   </div>
 </body>
