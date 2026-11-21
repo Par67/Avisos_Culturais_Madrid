@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo catálogo do Departamento de Português</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:transparent}
+  .banda{box-sizing:border-box;position:relative;height:84px;display:flex;align-items:stretch;background:#FAF5EA;border:1px solid #E6DCC6;border-radius:14px;overflow:hidden;font-family:Lato,'Segoe UI',Calibri,Carlito,'Helvetica Neue',Arial,sans-serif;color:#24384A}
+  .banda::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,#B5523B 0 50%,#24384A 50% 100%)}
+  .etiqueta{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:0 28px 5px 22px;background:#24384A;font-family:'Playfair Display','Palatino Linotype',Georgia,serif;font-style:italic;font-weight:600;font-size:27px;color:#FAF5EA;z-index:2}
+  .etiqueta svg{animation:respirar 3.2s ease-in-out infinite}
+  .janela{position:relative;flex:1 1 auto;overflow:hidden;display:flex;align-items:center;padding-bottom:5px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 50px,#000 calc(100% - 50px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 50px,#000 calc(100% - 50px),transparent 100%)}
+  .faixa{display:inline-flex;align-items:center;white-space:nowrap;animation:rodar 38s linear infinite}
+  .banda:hover .faixa,.banda:hover svg{animation-play-state:paused}
+  .item{font-size:28px;padding-right:36px}
+  .item em{font-family:'Playfair Display','Palatino Linotype',Georgia,serif;font-weight:600;color:#B5523B}
+  .item .sala{color:#B5523B;font-weight:700}
+  .sep{display:inline-flex;padding-right:36px}
+  .sep svg{animation:girar 8s linear infinite}
+  @keyframes rodar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes respirar{0%,100%{transform:scale(1)}50%{transform:scale(1.08) rotate(-4deg)}}
+  @keyframes girar{to{transform:rotate(360deg)}}
+  @media (max-width:600px){.banda{height:64px}.etiqueta{padding:0 14px 5px}.etiqueta .texto{display:none}.item{font-size:20px}}
+</style>
+</head>
+<body>
+  <div class="banda" role="marquee" aria-label="Novidade: já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3). Consulte-o na secção «Recursos».">
+    <div class="etiqueta" aria-hidden="true"><svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true"><path d="M24 12c-4-3-10-4-17-3v26c7-1 13 0 17 3 4-3 10-4 17-3V9c-7-1-13 0-17 3z" fill="none" stroke="#FAF5EA" stroke-width="2.6" stroke-linejoin="round"/><path d="M24 12v26" stroke="#FAF5EA" stroke-width="2.6"/><path d="M11 16c3-.3 6 .1 9 1.3M11 22c3-.3 6 .1 9 1.3M28 17.3c3-1.2 6-1.6 9-1.3M28 23.3c3-1.2 6-1.6 9-1.3" stroke="#FAF5EA" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M33 4l1.2 2.8L37 8l-2.8 1.2L33 12l-1.2-2.8L29 8l2.8-1.2z" fill="#B5523B"/></svg><span class="texto">Novidade</span></div>
+    <div class="janela" aria-hidden="true"><div class="faixa"><span class="item">Já está disponível o <em>novo catálogo</em> do Departamento de Português: biblioteca da EOI e biblioteca de turma <span class="sala">(no armário da sala 2.3)</span></span><span class="sep"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="#24384A"><circle cx="12" cy="5" r="3.2"/><circle cx="12" cy="19" r="3.2"/><circle cx="5" cy="12" r="3.2"/><circle cx="19" cy="12" r="3.2"/></g><circle cx="12" cy="12" r="2.6" fill="#B5523B"/></svg></span><span class="item">Consulte-o na secção <em>«Recursos»</em></span><span class="sep"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="#24384A"><circle cx="12" cy="5" r="3.2"/><circle cx="12" cy="19" r="3.2"/><circle cx="5" cy="12" r="3.2"/><circle cx="19" cy="12" r="3.2"/></g><circle cx="12" cy="12" r="2.6" fill="#B5523B"/></svg></span><span class="item">Já está disponível o <em>novo catálogo</em> do Departamento de Português: biblioteca da EOI e biblioteca de turma <span class="sala">(no armário da sala 2.3)</span></span><span class="sep"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="#24384A"><circle cx="12" cy="5" r="3.2"/><circle cx="12" cy="19" r="3.2"/><circle cx="5" cy="12" r="3.2"/><circle cx="19" cy="12" r="3.2"/></g><circle cx="12" cy="12" r="2.6" fill="#B5523B"/></svg></span><span class="item">Consulte-o na secção <em>«Recursos»</em></span><span class="sep"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="#24384A"><circle cx="12" cy="5" r="3.2"/><circle cx="12" cy="19" r="3.2"/><circle cx="5" cy="12" r="3.2"/><circle cx="19" cy="12" r="3.2"/></g><circle cx="12" cy="12" r="2.6" fill="#B5523B"/></svg></span></div></div>
+  </div>
+</body>
+</html>
