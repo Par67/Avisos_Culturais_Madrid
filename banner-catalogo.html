@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo catálogo do Departamento de Português</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  .banda {
+    box-sizing: border-box;
+    height: 84px;
+    background: #CDD1EA;
+    border: 1px solid #D3D8E3;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .faixa {
+    display: inline-flex;
+    animation: rodar 40s linear infinite;
+  }
+  .banda:hover .faixa { animation-play-state: paused; }
+  .faixa span {
+    padding-right: 120px;
+    color: #2E3460;
+    font-family: Lato, 'Segoe UI', Calibri, Carlito, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  @keyframes rodar {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (max-width: 600px) {
+    .banda { height: 64px; }
+    .faixa span { font-size: 22px; padding-right: 70px; }
+  }
+</style>
+</head>
+<body>
+  <div class="banda" role="marquee" aria-label="Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3). Consulte-o na secção «Recursos».">
+    <div class="faixa" aria-hidden="true">
+      <span>📢 Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3)! &nbsp;•&nbsp; Consulte-o na secção «Recursos». 📚</span>
+      <span>📢 Já está disponível o novo catálogo do Departamento de Português: biblioteca da EOI e biblioteca de turma (no armário da sala 2.3)! &nbsp;•&nbsp; Consulte-o na secção «Recursos». 📚</span>
+    </div>
+  </div>
+</body>
+</html>
