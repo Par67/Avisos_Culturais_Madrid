@@ -5,93 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avisos de atividades culturais lusófonas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; overflow-x: hidden; }
   body {
-    font-family: "Open Sans", Calibri, Carlito, Arial, sans-serif;
-    font-size: 17px;
-    color: #1d1d1d;
-    background-color: #b07a45;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(90,50,20,.35) 1px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba(240,200,140,.35) 1px, transparent 2px),
-      radial-gradient(circle at 40% 80%, rgba(70,40,15,.30) 1.5px, transparent 2.5px),
-      radial-gradient(circle at 85% 15%, rgba(230,180,120,.30) 1px, transparent 2px);
-    background-size: 9px 9px, 13px 13px, 17px 17px, 11px 11px;
+    font-family: Lato, "Segoe UI", Calibri, Carlito, Arial, sans-serif;
+    font-size: 17px; color: #4A3428; background: #FFFFFF;
   }
-  .quadro { max-width: 980px; margin: 0 auto; padding: 18px 14px 24px; }
+  .quadro { max-width: 1060px; margin: 0 auto; padding: 22px 16px 26px; background: #FBF3E6; border: 1px solid #E8D6BC; border-radius: 18px; }
 
   /* Título */
-  .titulo {
-    position: relative; max-width: 460px; margin: 4px auto 26px;
-    background: #f4f2ee; padding: 14px 20px 12px; text-align: center;
-    transform: rotate(-1deg); box-shadow: 4px 6px 0 rgba(0,0,0,.18);
-  }
-  .titulo h1 {
-    font-family: "Caveat", "Segoe Script", cursive; font-weight: 700;
-    font-size: 38px; line-height: 1.0; margin: 0;
-  }
-  .titulo p { font-family: "Caveat", "Segoe Script", cursive; font-size: 22px; margin: 8px 0 0; letter-spacing: 1px; }
-  .fita { position: absolute; width: 70px; height: 24px; opacity: .85; }
-  .titulo .fita.e { left: -34px; top: -8px; background: #d9c7a8; transform: rotate(-30deg); }
-  .titulo .fita.d { right: -34px; top: -8px; background: #d9c7a8; transform: rotate(30deg); }
+  .titulo { text-align: center; margin: 6px auto 6px; max-width: 760px; }
+  .titulo .fita { display: none; }
+  .titulo h1 { font-family: "Playfair Display", "Palatino Linotype", Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1.15; margin: 0; color: #3B2A21; }
+  .titulo p { font-size: 15px; margin: 6px 0 0; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: #B5523B; }
+  .titulo::after { content: ""; display: block; width: 70px; height: 3px; margin: 14px auto 0; background: #6B7A3A; border-radius: 2px; }
+  .instrucao { text-align: center; margin: 12px auto 24px; font-size: 15px; color: #7A6455; }
 
-  .instrucao {
-    text-align: center; margin: -14px auto 26px; max-width: 520px;
-    background: #fffbe6; padding: 8px 14px; font-size: 16px; transform: rotate(.6deg);
-    box-shadow: 2px 3px 0 rgba(0,0,0,.15);
-  }
-
-  /* Notas */
-  .notas { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 30px 22px; }
+  /* Cartões */
+  .notas { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
   .nota {
-    position: relative; display: block; text-decoration: none; color: #1d1d1d;
-    padding: 22px 14px 14px; min-height: 210px; text-align: center;
-    box-shadow: 4px 7px 0 rgba(0,0,0,.2);
-    transition: transform .18s ease, box-shadow .18s ease;
+    position: relative; display: flex; flex-direction: column; text-decoration: none; color: #4A3428;
+    background: #FFFDF8 !important; background-image: none !important;
+    border: 1px solid #E8D6BC; border-top: 5px solid var(--cor, #B5523B); border-radius: 14px;
+    padding: 18px 18px 16px; min-height: 230px; text-align: left;
+    transform: none !important; transition: transform .2s ease, border-color .2s ease;
   }
-  .nota:hover, .nota:focus { transform: rotate(0deg) scale(1.04) !important; box-shadow: 7px 12px 0 rgba(0,0,0,.22); z-index: 2; outline: none; }
-  .nota:focus-visible { outline: 3px solid #1d1d1d; outline-offset: 4px; }
-  .nota .fita.e { left: -12px; top: -8px; transform: rotate(-35deg); }
-  .nota .fita.d { right: -12px; top: -8px; transform: rotate(35deg); }
-  .nota .tipo { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; opacity: .75; }
-  .nota h2 { font-size: 17px; line-height: 1.25; margin: 6px 0 10px; text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
-  .nota .icone { font-size: 40px; line-height: 1; margin: 4px 0 6px; }
-  .nota .data { font-size: 16px; font-weight: 600; margin: 4px 0 2px; }
-  .nota .desc { font-size: 13.5px; line-height: 1.35; margin: 6px 0 0; text-align: justify; text-align-last: center; }
-  .nota .local {
-    display: block; margin: 10px auto 0; padding: 6px 10px; max-width: 95%;
-    background: rgba(255,255,255,.72); border-left: 4px solid #1d1d1d;
-    font-size: 13.5px; line-height: 1.35; font-style: italic; color: #2b2b2b; text-align: justify;
-  }
-  .nota .local::before { content: "📍 "; font-style: normal; }
-  .nota .extra { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 700; padding: 3px 10px; background: rgba(255,255,255,.65); border-radius: 3px; }
-  .nota .ver { display: block; margin-top: 8px; font-size: 13px; font-weight: 600; opacity: .8; }
+  .nota:hover, .nota:focus { transform: translateY(-4px) !important; border-color: var(--cor, #B5523B); outline: none; }
+  .nota:focus-visible { outline: 3px solid #3B2A21; outline-offset: 3px; }
+  .nota .fita { display: none; }
+  .nota .icone { order: -1; width: 50px; height: 50px; border-radius: 12px; background: var(--claro, #F6E4DC); font-size: 26px; line-height: 50px; text-align: center; margin: 0 0 12px; }
+  .nota .tipo { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--cor, #B5523B); }
+  .nota h2 { font-family: "Playfair Display", "Palatino Linotype", Georgia, serif; font-size: 19px; line-height: 1.25; margin: 4px 0 8px; font-weight: 700; color: #3B2A21; }
+  .nota .data { font-size: 15px; font-weight: 700; margin: 0 0 4px; color: #3B2A21; }
+  .nota .data::before { content: "📅 "; }
+  .nota .desc { font-size: 14px; line-height: 1.45; margin: 2px 0 0; text-align: justify; }
+  .nota .local { display: block; margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed #E8D6BC; font-size: 14px; line-height: 1.4; color: #6A5446; text-align: left; }
+  .nota .local::before { content: "📍 "; }
+  .nota .extra { align-self: flex-start; margin-top: 10px; font-size: 13px; font-weight: 700; padding: 4px 12px; background: var(--claro, #F6E4DC); color: #3B2A21; border-radius: 20px; }
+  .nota .ver { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 700; color: var(--cor, #B5523B); }
 
-  /* Papel pautado */
-  .pautado { background-image: repeating-linear-gradient(transparent 0 30px, rgba(0,0,0,.08) 30px 32px); }
+  /* Cores (só a risca, o ícone e as etiquetas) */
+  .c-salmao   { --cor: #B5523B; --claro: #F6E1D9; }
+  .c-lavanda  { --cor: #6E4A63; --claro: #EFE3EC; }
+  .c-amarelo  { --cor: #A8792A; --claro: #F6EACB; }
+  .c-roxo     { --cor: #2F5E7A; --claro: #DFEAF0; }
+  .c-verde    { --cor: #6B7A3A; --claro: #E9EDD8; }
+  .c-ciano    { --cor: #2E6B60; --claro: #DCEDE8; }
+  .c-laranja  { --cor: #C0673F; --claro: #F8E3D4; }
 
-  /* Cores */
-  .c-salmao   { background-color: #ff8a80; }
-  .c-lavanda  { background-color: #c7c4ec; }
-  .c-amarelo  { background-color: #fff48f; }
-  .c-roxo     { background-color: #b06cff; }
-  .c-verde    { background-color: #b6f5a2; }
-  .c-ciano    { background-color: #7fe1e8; }
-  .c-laranja  { background-color: #ffdc7a; }
-  .f-ciano  { background: rgba(110,210,220,.85); }
-  .f-rosa   { background: rgba(245,200,210,.85); }
-  .f-ouro   { background: rgba(245,185,40,.85); }
-
-  .rodape { margin-top: 40px; text-align: center; color: #fff; font-size: 15px; text-shadow: 0 1px 2px rgba(0,0,0,.6); line-height: 1.6; }
-  .vazio { display: none; text-align: center; background: #fffbe6; padding: 16px; max-width: 480px; margin: 0 auto; }
+  .rodape { margin-top: 28px; text-align: center; color: #7A6455; font-size: 14px; letter-spacing: .5px; }
+  .vazio { display: none; text-align: center; background: #FFFDF8; border: 1px solid #E8D6BC; border-radius: 12px; padding: 16px; max-width: 480px; margin: 0 auto; }
 
   @media (max-width: 520px) {
-    .titulo h1 { font-size: 40px; }
-    .titulo .fita { display: none; }
-    .notas { gap: 30px; }
+    .titulo h1 { font-size: 27px; }
+    .quadro { padding: 16px 10px 20px; }
   }
 </style>
 </head>
