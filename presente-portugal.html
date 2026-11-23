@@ -363,10 +363,10 @@ const PRON_SPK = ['Eu','Tu','Ele','Nós','Eles'];
 const TXT = BR?{conj:'Se conjugam como',conjAssim:'Se conjugam assim:',lead:'Consulte qualquer verbo, veja as letras mudarem e descubra a que grupo pertence: os verbos do mesmo grupo se conjugam da mesma maneira.'}
               :{conj:'Conjugam-se como',conjAssim:'Conjugam-se assim:',lead:''};
 const BLOCKS = {
-  reg:{n:1,name:'Regulares',desc:'Seguem o modelo, sem surpresas.',c:'var(--reg)',d:'var(--reg-d)'},
-  eu:{n:2,name:'Só muda o «eu»',desc:'O «eu» é diferente; as outras pessoas são regulares.',c:'var(--esc)',d:'var(--esc-d)'},
+  reg:{n:1,name:'Regulares',desc:BR?'Seguem o modelo. Em -cer e -ger/-gir só muda a letra do «eu», para manter o som: conheço, protejo.':'Seguem o modelo. Em -cer e -ger/-gir só muda a letra do «eu», para manter o som: conheço, protejo.',c:'var(--reg)',d:'var(--reg-d)'},
+  eu:{n:2,name:'Só muda a vogal do «eu»',desc:BR?'Só no «eu»: o e vira i (prefiro, visto) e o o vira u (durmo). As outras pessoas não mudam.':'Só no «eu»: o e passa a i (prefiro, visto) e o o passa a u (durmo). As outras pessoas não mudam.',c:'var(--esc)',d:'var(--esc-d)'},
   var:{n:3,name:'Mudam várias pessoas',desc:'Aprenda o modelo: os outros verbos do grupo são iguais.',c:'var(--vog)',d:'var(--vog-d)'},
-  uni:{n:4,name:'Únicos',desc:BR?'Não têm grupo: é preciso aprender de cor.':'Não têm grupo: aprendem-se de cor.',c:'var(--irr)',d:'var(--irr-d)'}
+  uni:{n:4,name:'Irregulares: aprender de cor',desc:'Formas especiais, só no «eu» (peço, posso, sei) ou em todas as pessoas (sou, estou, vou).',c:'var(--irr)',d:'var(--irr-d)'}
 };
 const FAM = [
  {id:'ar',b:'reg',name:'Regulares em -AR',type:'ar',model:'falar',
@@ -507,17 +507,17 @@ const SIMPLE={
  ar:['reg','Regulares em -ar',BR?'Tiramos o -ar e juntamos -o, -a, -amos, -am.':'Tira-se o -ar e junta-se -o, -as, -a, -amos, -am.'],
  er:['reg','Regulares em -er',BR?'Tiramos o -er e juntamos -o, -e, -emos, -em.':'Tira-se o -er e junta-se -o, -es, -e, -emos, -em.'],
  ir:['reg','Regulares em -ir',BR?'Tiramos o -ir e juntamos -o, -e, -imos, -em.':'Tira-se o -ir e junta-se -o, -es, -e, -imos, -em.'],
- cer:['eu','Como conhecer','Só o «eu» muda: c → ç (conheço).'],
- ger:['eu','Como proteger','Só o «eu» muda: g → j (protejo, corrijo).'],
- ei:['eu','Como preferir','Só o «eu» muda: e → i (prefiro, sinto, sigo).'],
- ou:['eu','Como dormir','Só o «eu» muda: o → u (durmo).'],
- eu:['eu','Como pedir','Só o «eu» muda: acaba em -ço (peço, meço, ouço).'],
- eu2:['eu','Cada um com o seu «eu»','Só o «eu» muda, mas cada verbo tem o seu: perco, posso, sei, valho, caibo. Aprendem-se de cor.'],
+ cer:['reg','Como conhecer (só a escrita)','Só muda a letra do «eu»: c → ç, para manter o som (conheço).'],
+ ger:['reg','Como proteger (só a escrita)','Só muda a letra do «eu»: g → j, para manter o som (protejo, corrijo).'],
+ ei:['eu','e → i: como preferir',BR?'Só no «eu», o e vira i: prefiro, visto, sinto, sigo.':'Só no «eu», o e passa a i: prefiro, visto, sinto, sigo.'],
+ ou:['eu','o → u: como dormir',BR?'Só no «eu», o o vira u: durmo, cubro, tusso.':'Só no «eu», o o passa a u: durmo, cubro, tusso.'],
+ eu:['uni','Como pedir','Só o «eu» é especial: acaba em -ço (peço, meço, ouço).'],
+ eu2:['uni','Cada um com o seu «eu»','Só o «eu» muda, mas cada verbo tem o seu: perco, posso, sei, valho, caibo. Aprendem-se de cor.'],
  uo:['var','Como subir','u → o'], ear:['var','Como passear','aparece um i; o «nós» não muda'], air:['var','Como sair',''],
  uir:['var','Como incluir','escreve-se com i'], struir:['var','Como construir','u → ó'], uzir:['var','Como produzir',BR?'a forma de «você/ele» perde o -e':'o «ele» perde o -e'],
  oer:['var','Como roer',''], ter:['var','Como ter','«eles têm» leva acento'], vir:['var','Como vir',''], por:['var','Como pôr',''],
  ver:['var','Como ver',''], ler:['var','Como ler e crer',''], zer:['var','Como fazer, dizer e trazer',BR?'«você/ele» sem -e: faz, diz, traz':'«ele» sem -e: faz, diz, traz'], rir:['var','Como rir',''],
- uni:['uni','Únicos',BR?'Não têm grupo: é preciso aprender de cor.':'Não têm grupo: aprendem-se de cor.']
+ uni:['uni','Únicos (tudo especial)',BR?'Não têm grupo: é preciso aprender de cor.':'Não têm grupo: aprendem-se de cor.']
 };
 FAM.forEach(f=>{const S=SIMPLE[f.id]; f.b=S[0]; f.name=S[1]; f.rule=S[2]; f.tip=f.id==='ar'?f.tip:(f.id==='ear'?'Também em cinco verbos em -iar: odiar, ansiar, remediar, incendiar, mediar (odeio).':(f.id==='eu'&&!BR?'No verbo ouvir também se diz «oiço».':''));});
 FAM.forEach(f=>{
@@ -1035,10 +1035,10 @@ document.addEventListener('click',e=>{const c=e.target.closest('#result .chip[da
 
 /* ---------------- FAMÍLIAS ---------------- */
 function renderFams(){
-  const EXM={reg:'falar',eu:'dormir',var:'subir',uni:'ser'};
+  const EXM={reg:'falar',eu:'vestir',var:'subir',uni:'ser'};
   const intro=`<div class="panel" style="margin-bottom:26px"><h3 class="sec" style="margin:0 0 4px">Como saber o grupo de um verbo?</h3>
     <p class="sub just">Olhe para a tabela do verbo: as casas <b>coloridas</b> são as formas que mudam. Pelo desenho, sabe logo o grupo.</p>
-    <div class="gintro">${Object.entries(BLOCKS).map(([k,b])=>`<div class="gcard" style="background:${b.c}"><h4 style="color:${b.d}">${b.n} · ${b.name}</h4>${shape(VERBS[EXM[k]],true)}<p class="just">${k==='reg'?'Nenhuma casa colorida: nada muda.':k==='eu'?'Só a casa do «eu» está colorida.':k==='var'?'Várias casas coloridas: aprenda o verbo modelo.':'Todas as casas coloridas: aprende-se de cor.'}</p></div>`).join('')}</div></div>`;
+    <div class="gintro">${Object.entries(BLOCKS).map(([k,b])=>`<div class="gcard" style="background:${b.c}"><h4 style="color:${b.d}">${b.n} · ${b.name}</h4>${shape(VERBS[EXM[k]],true)}<p class="just">${k==='reg'?'Nenhuma casa colorida: nada muda. (Em conheço e protejo só muda a letra.)':k==='eu'?(BR?'Só a casa do «eu»: e vira i (visto, prefiro) ou o vira u (durmo).':'Só a casa do «eu»: e passa a i (visto, prefiro) ou o passa a u (durmo).'):k==='var'?'Várias casas coloridas: aprenda o verbo modelo.':'Formas especiais: aprendem-se de cor.'}</p></div>`).join('')}</div></div>`;
   document.getElementById('famWrap').innerHTML=intro+`<div class="row" style="margin:0 0 24px"><button class="btn" style="background:var(--es-d)" onclick="document.querySelector('#famWrap .block:last-child').scrollIntoView({behavior:'smooth'})">🚩 Ir para as armadilhas do espanhol</button></div>`+Object.entries(BLOCKS).map(([k,b])=>{
     const fs=FAM.filter(f=>f.b===k);
     return `<div class="block"><div class="blockhead"><div class="num" style="background:${b.d}">${b.n}</div><div><h3>${b.name}</h3><p>${b.desc}</p></div></div>
@@ -1170,7 +1170,7 @@ function next(){
 const FAQ_ES=['Em espanhol digo «pienso», «puedo», «tengo». E em português?','Em português nunca há «ie» nem «ue» no presente: penso, conto, volto, quero. E o eu não acaba em -go: tenho, saio, faço. Veja as «Armadilhas do espanhol» no separador «Grupos» e pratique em «Praticar → As mensagens da Carmen».'];
 const FAQ=[FAQ_ES,
  ['Como sei se um verbo é regular?','Procure o verbo no separador «Consultar». A cor e a etiqueta mostram logo o grupo. Os verdes (grupo 1) são regulares; os outros têm alguma mudança, e por baixo aparecem os verbos que mudam da mesma maneira.'],
- [BR?'Por que se diz «eu durmo» mas «ele dorme»?':'Porque é que se diz «eu durmo» mas «ele dorme»?','Dormir é do grupo «Só muda o eu»: o o passa a u apenas no eu. É o mesmo em cobrir (cubro, cobre) e tossir (tusso, tosse).'],
+ [BR?'Por que se diz «eu durmo» mas «ele dorme»?':'Porque é que se diz «eu durmo» mas «ele dorme»?','Dormir é do grupo «Só muda a vogal do eu»: o o passa a u apenas no eu. É o mesmo em cobrir (cubro, cobre) e tossir (tusso, tosse).'],
  ['Em espanhol é «prefiero». Porque não «prefero»?',BR?'Em português só o eu muda: prefiro. As outras pessoas ficam com e: prefere, preferimos, preferem. O mesmo acontece com sentir, seguir, servir, vestir, repetir…':'Em português só o eu muda: prefiro. As outras pessoas ficam com e: preferes, prefere, preferimos, preferem. O mesmo acontece em sentir, seguir, servir, vestir, repetir…'],
  BR?['«tem» e «têm» soam igual?','Sim, se ouvem igual. O acento só mostra na escrita que é plural: ele tem, eles têm. Também: vem / vêm.']:['«tem» e «têm» soam igual?','Sim, ouvem-se igual. O acento só mostra na escrita que é plural: ele tem, eles têm. Também: vem / vêm.'],
  [BR?'Por que «faz», «diz» e «traz» não têm -e?':'Porque é que «faz», «diz» e «traz» não têm -e?','É uma marca da família de dizer, fazer e trazer, e dos verbos em -uzir: ele faz, ele diz, ele traz, ele produz, ele conduz.'],
