@@ -93,6 +93,19 @@
     .titulo .fita { display: none; }
     .notas { gap: 30px; }
   }
+
+  /* Nota em destaque: brilha e abana de vez em quando */
+  .nota.destaque { position: relative; animation: abanar 4s ease-in-out infinite, brilhar 2s ease-in-out infinite; z-index: 1; }
+  .nota.destaque:hover, .nota.destaque:focus { animation-play-state: paused; }
+  .nota .selo { position: absolute; top: -16px; left: 50%; transform: translateX(-50%) rotate(-3deg); background: #E8B23A; color: #3b2a12; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 14px; box-shadow: 1px 3px 6px rgba(60,40,20,.3); white-space: nowrap; z-index: 3; }
+  .nota .faisca { position: absolute; font-size: 18px; pointer-events: none; animation: cintilar 1.6s ease-in-out infinite; }
+  .nota .faisca.f1 { top: 160px; right: 34px; }
+  .nota .faisca.f2 { bottom: 40px; left: 6px; animation-delay: .5s; }
+  .nota .faisca.f3 { top: 165px; left: 30px; animation-delay: 1s; font-size: 14px; }
+  @keyframes abanar { 0%, 70%, 100% { transform: rotate(-1deg) scale(1); } 74% { transform: rotate(-4deg) scale(1.04); } 78% { transform: rotate(3deg) scale(1.04); } 82% { transform: rotate(-3deg) scale(1.04); } 86% { transform: rotate(2deg) scale(1.02); } 90% { transform: rotate(-1deg) scale(1); } }
+  @keyframes brilhar { 0%, 100% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 0 0 rgba(232,178,58,0); } 50% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 18px 6px rgba(232,178,58,.75); } }
+  @keyframes cintilar { 0%, 100% { opacity: .15; transform: scale(.6) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
+  @media (prefers-reduced-motion: reduce) { .nota.destaque, .nota .faisca { animation: none; } .nota.destaque { box-shadow: 0 0 14px 4px rgba(232,178,58,.7); } }
 </style>
 </head>
 <body>
@@ -155,7 +168,7 @@
       <div class="local">Maloka, Calle del Salitre, 36 (Lavapiés)</div>
       <span class="extra">4 €</span>
       <span class="ver">Ver informação →</span></a>
-    <a class="nota c-amarelo pautado" style="transform: rotate(1deg);" href="https://www.lacasaencendida.es/cine/los-joaos-presentan-su-nueva-pelicula-13-alfileres" target="_blank" rel="noopener">
+    <a class="nota c-amarelo pautado destaque" style="transform: rotate(1deg);" href="https://www.lacasaencendida.es/cine/los-joaos-presentan-su-nueva-pelicula-13-alfileres" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
       <div class="tipo">Cinema · Portugal</div>
       <h2>«13 alfileres», de João Pedro Rodrigues e João Rui Guerra da Mata</h2>
@@ -164,7 +177,8 @@
       <div class="desc">Festival Márgenes. Depois do filme, conversa com os realizadores.</div>
       <div class="local">La Casa Encendida, Ronda de Valencia, 2</div>
       <span class="extra">5 €</span>
-      <span class="ver">Ver informação →</span></a>
+      <span class="ver">Ver informação →</span>
+      <span class="selo">✨ A não perder</span><span class="faisca f1" aria-hidden="true">✨</span><span class="faisca f2" aria-hidden="true">✨</span><span class="faisca f3" aria-hidden="true">✨</span></a>
     <a class="nota c-laranja" style="transform: rotate(-2deg);" href="https://madrid.embaixadaportugal.mne.gov.pt/files/Plano_de_atividades_2026.pdf" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
       <div class="tipo">Cinema · Portugal</div>
@@ -317,7 +331,8 @@ var RESERVA = [
     "extra": "5 €",
     "link": "https://www.lacasaencendida.es/cine/los-joaos-presentan-su-nueva-pelicula-13-alfileres",
     "fim": "2026-11-28",
-    "cor": "amarelo"
+    "cor": "amarelo",
+    "destaque": "sim"
   },
   {
     "tipo": "Cinema · Portugal",
@@ -432,7 +447,7 @@ var RESERVA = [
     var cab = linhas[0].map(semAcento), lista = [];
     var nomes = { "tipo":"tipo", "titulo":"titulo", "icone":"icone", "datas":"data", "data":"data",
                   "descricao":"descricao", "local e horario":"local", "local":"local", "extra":"extra",
-                  "link":"link", "ultimo dia":"fim", "ultimo dia (aaaa-mm-dd)":"fim", "fim":"fim", "cor":"cor" };
+                  "link":"link", "ultimo dia":"fim", "ultimo dia (aaaa-mm-dd)":"fim", "fim":"fim", "cor":"cor", "destaque":"destaque" };
     for (var l = 1; l < linhas.length; l++) {
       var ev = {}, vazio = true;
       for (var k = 0; k < cab.length; k++) {
@@ -508,6 +523,11 @@ var RESERVA = [
       if (ev.local) { nota.appendChild(el("div", "local", ev.local)); }
       if (ev.extra) { nota.appendChild(el("span", "extra", ev.extra)); }
       if (link) { nota.appendChild(el("span", "ver", "Ver informação →")); }
+      if (semAcento(ev.destaque) === "sim") {
+        nota.className += " destaque";
+        nota.appendChild(el("span", "selo", "✨ A não perder"));
+        ["f1", "f2", "f3"].forEach(function (c) { var fx = el("span", "faisca " + c, "✨"); fx.setAttribute("aria-hidden", "true"); nota.appendChild(fx); });
+      }
       caixa.appendChild(nota);
     });
     document.getElementById("vazio").style.display = ativos.length ? "none" : "block";
