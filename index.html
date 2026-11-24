@@ -99,9 +99,9 @@
   .nota.destaque:hover, .nota.destaque:focus { animation-play-state: paused; }
   .nota .selo { position: absolute; top: -16px; left: 50%; transform: translateX(-50%) rotate(-3deg); background: #E8B23A; color: #3b2a12; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 14px; box-shadow: 1px 3px 6px rgba(60,40,20,.3); white-space: nowrap; z-index: 3; }
   .nota .faisca { position: absolute; font-size: 18px; pointer-events: none; animation: cintilar 1.6s ease-in-out infinite; }
-  .nota .faisca.f1 { top: 160px; right: 34px; }
+  .nota .faisca.f1 { bottom: 12px; right: 12px; }
   .nota .faisca.f2 { bottom: 40px; left: 6px; animation-delay: .5s; }
-  .nota .faisca.f3 { top: 165px; left: 30px; animation-delay: 1s; font-size: 14px; }
+  .nota .faisca.f3 { top: 34px; right: 6px; animation-delay: 1s; font-size: 14px; }
   @keyframes abanar { 0%, 70%, 100% { transform: rotate(-1deg) scale(1); } 74% { transform: rotate(-4deg) scale(1.04); } 78% { transform: rotate(3deg) scale(1.04); } 82% { transform: rotate(-3deg) scale(1.04); } 86% { transform: rotate(2deg) scale(1.02); } 90% { transform: rotate(-1deg) scale(1); } }
   @keyframes brilhar { 0%, 100% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 0 0 rgba(232,178,58,0); } 50% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 18px 6px rgba(232,178,58,.75); } }
   @keyframes cintilar { 0%, 100% { opacity: .15; transform: scale(.6) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
@@ -207,7 +207,7 @@
       <div class="local">Teatro Albéniz, 20h</div>
       <span class="extra">Desde 36 €</span>
       <span class="ver">Ver informação →</span></a>
-    <a class="nota c-lavanda" style="transform: rotate(2deg);" href="https://salavillanos.es/evento/carolina-deslandes/" target="_blank" rel="noopener">
+    <a class="nota c-lavanda destaque" style="transform: rotate(2deg);" href="https://salavillanos.es/evento/carolina-deslandes/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
       <div class="tipo">Concerto · Portugal</div>
       <h2>Carolina Deslandes</h2>
@@ -215,7 +215,8 @@
       <div class="data">9 de fevereiro de 2027</div>
       <div class="desc">Concerto em trio: voz, guitarra e violoncelo.</div>
       <div class="local">Sala Villanos, 20h30</div>
-      <span class="ver">Ver informação →</span></a>
+      <span class="ver">Ver informação →</span>
+      <span class="selo">✨ A não perder</span><span class="faisca f1" aria-hidden="true">✨</span><span class="faisca f2" aria-hidden="true">✨</span><span class="faisca f3" aria-hidden="true">✨</span></a>
     <a class="nota c-amarelo pautado" style="transform: rotate(-1.5deg);" href="https://www.instituto-camoes.pt/activity/o-que-fazemos/cultura-portuguesa/agenda/madrid-exposicao-camoes-vida-obra-e-permanencia-na-cultura-hispanica-na-biblioteca-nacional-de-espanha" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
       <div class="tipo">Exposição · Portugal</div>
@@ -380,7 +381,8 @@ var RESERVA = [
     "extra": "",
     "link": "https://salavillanos.es/evento/carolina-deslandes/",
     "fim": "2027-02-09",
-    "cor": "lavanda"
+    "cor": "lavanda",
+    "destaque": "sim"
   },
   {
     "tipo": "Exposição · Portugal",
