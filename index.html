@@ -162,6 +162,24 @@
   .b-gw { background: radial-gradient(circle at 18% 50%, #000 0 2px, transparent 2.5px), linear-gradient(90deg, #CE1126 0 35%, transparent 35%), linear-gradient(180deg, #FCD116 50%, #009E49 50%); }
   .b-st { background: linear-gradient(90deg, #D21034 0 28%, transparent 28%), linear-gradient(180deg, #12AD2B 30%, #FFCE00 30% 70%, #12AD2B 70%); }
   .b-tl { background: linear-gradient(90deg, #000 0 25%, transparent 25%), linear-gradient(90deg, #FFC726 0 45%, #DC241F 45%); }
+  /* Quadro mais pequeno */
+  .quadro { padding: 8px 10px 14px; }
+  .titulo { max-width: 380px; margin: 2px auto 14px; padding: 9px 16px 8px; }
+  .titulo h1 { font-size: 29px; }
+  .titulo p { font-size: 17px; margin-top: 4px; }
+  .instrucao { margin: -6px auto 14px; padding: 5px 12px; font-size: 14px; }
+  .notas { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px 12px; }
+  .nota { padding: 14px 9px 9px; }
+  .nota h2 { font-size: 14px; margin: 3px 0 4px; }
+  .nota .tipo { font-size: 10.5px; letter-spacing: 1px; }
+  .nota .data { font-size: 12.5px !important; }
+  .nota .desc, .nota .local { font-size: 12px; }
+  .nota:hover, .nota:focus { transform: rotate(0deg) scale(1.3) !important; }
+  @media (hover: hover) { .nota { padding-bottom: 26px; } .nota > .icone { font-size: 20px; } .nota:hover, .nota:focus { padding-bottom: 10px; } }
+  .rodape { margin-top: 16px; font-size: 13px; }
+  .nota .faisca.f1 { bottom: 6px; right: 8px; }
+  .nota .faisca.f2 { bottom: 8px; right: 34px; left: auto; }
+  .nota .faisca.f3 { top: auto; bottom: 6px; right: auto; left: 34px; }
 </style>
 </head>
 <body>
@@ -225,63 +243,6 @@
       <div class="local">Café La Palma</div>
       <span class="extra">20 €</span>
       <span class="ver">Ver informação →</span></a>
-    <a class="nota c-verde pautado" style="transform: rotate(1deg);" href="https://www.songkick.com/concerts/43402734-edimundo-santos-at-babylon-jazz-club" target="_blank" rel="noopener">
-      <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
-      <h2>Edimundo Santos e Mauricio Caruso</h2>
-      <div class="icone" aria-hidden="true">🎙️</div>
-      <div class="data">29 de novembro</div>
-      <div class="desc">Cantor brasileiro radicado em Madrid.</div>
-      <div class="local">Babylon Jazz Club, Calle de Cedaceros, 7 · Abertura das portas às 12h30</div>
-      <span class="extra">Desde 16,48 €</span>
-      <span class="ver">Ver informação →</span></a>
-    <a class="nota c-laranja" style="transform: rotate(-2deg);" href="https://madrid.embaixadaportugal.mne.gov.pt/files/Plano_de_atividades_2026.pdf" target="_blank" rel="noopener">
-      <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Cinema</div>
-      <h2>Festa do Cinema Português em Madrid</h2>
-      <div class="icone" aria-hidden="true">🎬</div>
-      <div class="data">5 e 6 de dezembro</div>
-      <div class="desc">1.ª edição, organizada pela Embaixada de Portugal. Programa a anunciar.</div>
-      <div class="local">Local a anunciar</div>
-      <span class="ver">Ver informação →</span></a>
-    <a class="nota c-ciano" style="transform: rotate(1.5deg);" href="https://cafecentralmadrid.com/en/events/alba-santos-a-nossa-bossa-eb926a79/" target="_blank" rel="noopener">
-      <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
-      <h2>«Na textura de Elis»</h2>
-      <div class="icone" aria-hidden="true">🎷</div>
-      <div class="data">9 e 10 de dezembro, às 20h e às 22h</div>
-      <div class="desc">Alba Santos &amp; A Nossa Bossa cantam Elis Regina.</div>
-      <div class="local">Café Central, Calle del Prado, 21</div>
-      <span class="ver">Ver informação →</span></a>
-    <a class="nota c-lavanda" style="transform: rotate(-1deg);" href="https://www.taquilla.com/entradas/toninho-horta?t10cityorder=Madrid" target="_blank" rel="noopener">
-      <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
-      <h2>Toninho Horta</h2>
-      <div class="icone" aria-hidden="true">🎸</div>
-      <div class="data">16 de dezembro, às 20h</div>
-      <div class="desc">Guitarrista e cantor brasileiro, uma das vozes do Clube da Esquina. Concerto intimista.</div>
-      <div class="local">Café Berlín, Costanilla de los Ángeles, 20</div>
-      <span class="extra">Desde 18 €</span>
-      <span class="ver">Ver informação →</span></a>
-    <a class="nota c-amarelo pautado" style="transform: rotate(2deg);" href="https://www.uam.es/uam/ciclodegrandesautoreseinterpretesuam-54-concierto4" target="_blank" rel="noopener">
-      <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
-      <h2>«O Messias», de Händel, com Os Músicos do Tejo</h2>
-      <div class="icone" aria-hidden="true">🎻</div>
-      <div class="data">19 de dezembro, às 19h</div>
-      <div class="desc">Orquestra barroca portuguesa, dirigida por Marcos Magalhães, com o Coro da UAM.</div>
-      <div class="local">Auditorio Nacional de Música, Sala de Cámara</div>
-      <span class="extra">Desde 22 €</span>
-      <span class="ver">Ver informação →</span></a>
-    <a class="nota c-lavanda" style="transform: rotate(-1.5deg);" href="https://arteshoy.com/travesia-cuatro-eleonore-koch-claudia-pages-rabal/" target="_blank" rel="noopener">
-      <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Exposição</div>
-      <h2>Eleonore Koch, «Querida Lore»</h2>
-      <div class="icone" aria-hidden="true">🖼️</div>
-      <div class="data">Até 30 de dezembro</div>
-      <div class="desc">Centenário da pintora brasileira: desenhos e estudos das suas naturezas-mortas.</div>
-      <div class="local">Galería Travesía Cuatro, Calle de San Mateo, 16</div>
-      <span class="ver">Ver informação →</span></a>
     <a class="nota c-verde pautado" style="transform: rotate(1deg);" href="https://www.arteinformado.com/agenda/f/juego-de-ninos-247946" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
       <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Exposição</div>
@@ -291,6 +252,63 @@
       <div class="desc">Artista e cineasta português. Inauguração a 28 de novembro, das 12h às 14h.</div>
       <div class="local">Galería Pedro Cera, Calle de Barceló, 13</div>
       <span class="extra">Entrada gratuita</span>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-ciano" style="transform: rotate(-2deg);" href="https://www.songkick.com/concerts/43402734-edimundo-santos-at-babylon-jazz-club" target="_blank" rel="noopener">
+      <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
+      <h2>Edimundo Santos e Mauricio Caruso</h2>
+      <div class="icone" aria-hidden="true">🎙️</div>
+      <div class="data">29 de novembro</div>
+      <div class="desc">Cantor brasileiro radicado em Madrid.</div>
+      <div class="local">Babylon Jazz Club, Calle de Cedaceros, 7 · Abertura das portas às 12h30</div>
+      <span class="extra">Desde 16,48 €</span>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-laranja" style="transform: rotate(1.5deg);" href="https://madrid.embaixadaportugal.mne.gov.pt/files/Plano_de_atividades_2026.pdf" target="_blank" rel="noopener">
+      <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Cinema</div>
+      <h2>Festa do Cinema Português em Madrid</h2>
+      <div class="icone" aria-hidden="true">🎬</div>
+      <div class="data">5 e 6 de dezembro</div>
+      <div class="desc">1.ª edição, organizada pela Embaixada de Portugal. Programa a anunciar.</div>
+      <div class="local">Local a anunciar</div>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-ciano" style="transform: rotate(-1deg);" href="https://cafecentralmadrid.com/en/events/alba-santos-a-nossa-bossa-eb926a79/" target="_blank" rel="noopener">
+      <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
+      <h2>«Na textura de Elis»</h2>
+      <div class="icone" aria-hidden="true">🎷</div>
+      <div class="data">9 e 10 de dezembro, às 20h e às 22h</div>
+      <div class="desc">Alba Santos &amp; A Nossa Bossa cantam Elis Regina.</div>
+      <div class="local">Café Central, Calle del Prado, 21</div>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-lavanda" style="transform: rotate(2deg);" href="https://www.taquilla.com/entradas/toninho-horta?t10cityorder=Madrid" target="_blank" rel="noopener">
+      <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
+      <h2>Toninho Horta</h2>
+      <div class="icone" aria-hidden="true">🎸</div>
+      <div class="data">16 de dezembro, às 20h</div>
+      <div class="desc">Guitarrista e cantor brasileiro, uma das vozes do Clube da Esquina. Concerto intimista.</div>
+      <div class="local">Café Berlín, Costanilla de los Ángeles, 20</div>
+      <span class="extra">Desde 18 €</span>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-amarelo pautado" style="transform: rotate(-1.5deg);" href="https://www.uam.es/uam/ciclodegrandesautoreseinterpretesuam-54-concierto4" target="_blank" rel="noopener">
+      <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
+      <h2>«O Messias», de Händel, com Os Músicos do Tejo</h2>
+      <div class="icone" aria-hidden="true">🎻</div>
+      <div class="data">19 de dezembro, às 19h</div>
+      <div class="desc">Orquestra barroca portuguesa, dirigida por Marcos Magalhães, com o Coro da UAM.</div>
+      <div class="local">Auditorio Nacional de Música, Sala de Cámara</div>
+      <span class="extra">Desde 22 €</span>
+      <span class="ver">Ver informação →</span></a>
+    <a class="nota c-lavanda" style="transform: rotate(1deg);" href="https://arteshoy.com/travesia-cuatro-eleonore-koch-claudia-pages-rabal/" target="_blank" rel="noopener">
+      <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Exposição</div>
+      <h2>Eleonore Koch, «Querida Lore»</h2>
+      <div class="icone" aria-hidden="true">🖼️</div>
+      <div class="data">Até 30 de dezembro</div>
+      <div class="desc">Centenário da pintora brasileira: desenhos e estudos das suas naturezas-mortas.</div>
+      <div class="local">Galería Travesía Cuatro, Calle de San Mateo, 16</div>
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-salmao" style="transform: rotate(-2deg);" href="https://salgadoaquamater.com/informacion-practica/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
@@ -381,6 +399,7 @@ var RESERVA = [
     "titulo": "Chico Chico",
     "icone": "🎸",
     "data": "26 de novembro",
+    "inicio": "2026-11-26",
     "descricao": "Cantor e compositor brasileiro, filho de Cássia Eller.",
     "local": "Sala Villanos, 20h30",
     "extra": "",
@@ -393,6 +412,7 @@ var RESERVA = [
     "titulo": "«NÔT», de Marlene Monteiro Freitas",
     "icone": "💃",
     "data": "27 e 28 de novembro",
+    "inicio": "2026-11-27",
     "descricao": "Festival de Otoño",
     "local": "Teatros del Canal, 20h",
     "extra": "",
@@ -405,6 +425,7 @@ var RESERVA = [
     "titulo": "Roda das Minas",
     "icone": "🎶",
     "data": "28 de novembro, das 19h30 às 21h30",
+    "inicio": "2026-11-28",
     "descricao": "Última roda de samba do ano.",
     "local": "Maloka, Calle del Salitre, 36 (Lavapiés)",
     "extra": "4 €",
@@ -417,6 +438,7 @@ var RESERVA = [
     "titulo": "«13 alfileres», de João Pedro Rodrigues e João Rui Guerra da Mata",
     "icone": "📌",
     "data": "28 de novembro, às 19h",
+    "inicio": "2026-11-28",
     "descricao": "Festival Márgenes. Depois do filme, conversa com os realizadores. Convém comprar o bilhete com antecedência.",
     "local": "La Casa Encendida, Ronda de Valencia, 2",
     "extra": "5 € · À venda online e na bilheteira",
@@ -430,6 +452,7 @@ var RESERVA = [
     "titulo": "Caipirinha Society",
     "icone": "🍹",
     "data": "28 de novembro, às 21h30",
+    "inicio": "2026-11-28",
     "descricao": "Trio brasileiro com versões de rock brasileiro: Legião Urbana, Titãs, Rita Lee.",
     "local": "Café La Palma",
     "extra": "20 €",
@@ -438,22 +461,37 @@ var RESERVA = [
     "cor": "ciano"
   },
   {
+    "tipo": "Exposição · Portugal",
+    "titulo": "Gabriel Abrantes, «Juego de niños»",
+    "icone": "🧸",
+    "data": "A partir de 28 de novembro",
+    "inicio": "2026-11-28",
+    "descricao": "Artista e cineasta português. Inauguração a 28 de novembro, das 12h às 14h.",
+    "local": "Galería Pedro Cera, Calle de Barceló, 13",
+    "extra": "Entrada gratuita",
+    "link": "https://www.arteinformado.com/agenda/f/juego-de-ninos-247946",
+    "fim": "2026-12-31",
+    "cor": "verde"
+  },
+  {
     "tipo": "Concerto · Brasil",
     "titulo": "Edimundo Santos e Mauricio Caruso",
     "icone": "🎙️",
     "data": "29 de novembro",
+    "inicio": "2026-11-29",
     "descricao": "Cantor brasileiro radicado em Madrid.",
     "local": "Babylon Jazz Club, Calle de Cedaceros, 7 · Abertura das portas às 12h30",
     "extra": "Desde 16,48 €",
     "link": "https://www.songkick.com/concerts/43402734-edimundo-santos-at-babylon-jazz-club",
     "fim": "2026-11-29",
-    "cor": "verde"
+    "cor": "ciano"
   },
   {
     "tipo": "Cinema · Portugal",
     "titulo": "Festa do Cinema Português em Madrid",
     "icone": "🎬",
     "data": "5 e 6 de dezembro",
+    "inicio": "2026-12-05",
     "descricao": "1.ª edição, organizada pela Embaixada de Portugal. Programa a anunciar.",
     "local": "Local a anunciar",
     "extra": "",
@@ -466,6 +504,7 @@ var RESERVA = [
     "titulo": "«Na textura de Elis»",
     "icone": "🎷",
     "data": "9 e 10 de dezembro, às 20h e às 22h",
+    "inicio": "2026-12-09",
     "descricao": "Alba Santos & A Nossa Bossa cantam Elis Regina.",
     "local": "Café Central, Calle del Prado, 21",
     "extra": "",
@@ -478,6 +517,7 @@ var RESERVA = [
     "titulo": "Toninho Horta",
     "icone": "🎸",
     "data": "16 de dezembro, às 20h",
+    "inicio": "2026-12-16",
     "descricao": "Guitarrista e cantor brasileiro, uma das vozes do Clube da Esquina. Concerto intimista.",
     "local": "Café Berlín, Costanilla de los Ángeles, 20",
     "extra": "Desde 18 €",
@@ -490,6 +530,7 @@ var RESERVA = [
     "titulo": "«O Messias», de Händel, com Os Músicos do Tejo",
     "icone": "🎻",
     "data": "19 de dezembro, às 19h",
+    "inicio": "2026-12-19",
     "descricao": "Orquestra barroca portuguesa, dirigida por Marcos Magalhães, com o Coro da UAM.",
     "local": "Auditorio Nacional de Música, Sala de Cámara",
     "extra": "Desde 22 €",
@@ -502,6 +543,7 @@ var RESERVA = [
     "titulo": "Eleonore Koch, «Querida Lore»",
     "icone": "🖼️",
     "data": "Até 30 de dezembro",
+    "inicio": "2026-12-30",
     "descricao": "Centenário da pintora brasileira: desenhos e estudos das suas naturezas-mortas.",
     "local": "Galería Travesía Cuatro, Calle de San Mateo, 16",
     "extra": "",
@@ -510,22 +552,11 @@ var RESERVA = [
     "cor": "lavanda"
   },
   {
-    "tipo": "Exposição · Portugal",
-    "titulo": "Gabriel Abrantes, «Juego de niños»",
-    "icone": "🧸",
-    "data": "A partir de 28 de novembro",
-    "descricao": "Artista e cineasta português. Inauguração a 28 de novembro, das 12h às 14h.",
-    "local": "Galería Pedro Cera, Calle de Barceló, 13",
-    "extra": "Entrada gratuita",
-    "link": "https://www.arteinformado.com/agenda/f/juego-de-ninos-247946",
-    "fim": "2026-12-31",
-    "cor": "verde"
-  },
-  {
     "tipo": "Exposição · Brasil",
     "titulo": "Sebastião Salgado, «Aqua Mater»",
     "icone": "📷",
     "data": "Até 31 de janeiro de 2027",
+    "inicio": "2027-01-31",
     "descricao": "Fotografias sobre a água e os glaciares.",
     "local": "Fundación Canal, Sala Castellana 214 · Das 11h às 22h (fechada às terças-feiras)",
     "extra": "",
@@ -538,6 +569,7 @@ var RESERVA = [
     "titulo": "Ana Lua Caiano",
     "icone": "🎛️",
     "data": "4 de fevereiro de 2027, às 20h",
+    "inicio": "2027-02-04",
     "descricao": "Música tradicional portuguesa com eletrónica.",
     "local": "Sala Clamores, Calle de Alburquerque, 14",
     "extra": "19,60 €",
@@ -550,6 +582,7 @@ var RESERVA = [
     "titulo": "Salvador Sobral",
     "icone": "🎤",
     "data": "6 de fevereiro de 2027",
+    "inicio": "2027-02-06",
     "descricao": "Inverfest 2027",
     "local": "Teatro Albéniz, 20h",
     "extra": "Desde 36 €",
@@ -562,6 +595,7 @@ var RESERVA = [
     "titulo": "Carolina Deslandes",
     "icone": "🎶",
     "data": "9 de fevereiro de 2027",
+    "inicio": "2027-02-09",
     "descricao": "Concerto em trio: voz, guitarra e violoncelo.",
     "local": "Sala Villanos, 20h30",
     "extra": "",
@@ -575,6 +609,7 @@ var RESERVA = [
     "titulo": "«Camões: vida, obra e permanência na cultura hispânica»",
     "icone": "📜",
     "data": "Até 14 de fevereiro de 2027",
+    "inicio": "2027-02-14",
     "descricao": "",
     "local": "Biblioteca Nacional de Espanha, Sala Recoletos · De segunda a sexta, das 10h às 20h",
     "extra": "Entrada gratuita",
@@ -587,6 +622,7 @@ var RESERVA = [
     "titulo": "Jorge Vercillo",
     "icone": "🎵",
     "data": "22 de fevereiro de 2027",
+    "inicio": "2027-02-22",
     "descricao": "Música popular brasileira.",
     "local": "Teatro Pavón, 20h30",
     "extra": "Desde 44,90 €",
@@ -599,6 +635,7 @@ var RESERVA = [
     "titulo": "Maloka",
     "icone": "🥁",
     "data": "Todas as semanas",
+    "inicio": "",
     "descricao": "Associação cultural brasileira. Samba à sexta e ao sábado.",
     "local": "Calle del Salitre, 36 (Lavapiés)",
     "extra": "",
@@ -635,7 +672,7 @@ var RESERVA = [
     var cab = linhas[0].map(semAcento), lista = [];
     var nomes = { "tipo":"tipo", "titulo":"titulo", "icone":"icone", "datas":"data", "data":"data",
                   "descricao":"descricao", "local e horario":"local", "local":"local", "extra":"extra",
-                  "link":"link", "ultimo dia":"fim", "ultimo dia (aaaa-mm-dd)":"fim", "fim":"fim", "cor":"cor", "destaque":"destaque" };
+                  "link":"link", "inicio":"inicio", "primeiro dia":"inicio", "primeiro dia (aaaa-mm-dd)":"inicio", "ultimo dia":"fim", "ultimo dia (aaaa-mm-dd)":"fim", "fim":"fim", "cor":"cor", "destaque":"destaque" };
     for (var l = 1; l < linhas.length; l++) {
       var ev = {}, vazio = true;
       for (var k = 0; k < cab.length; k++) {
@@ -731,7 +768,8 @@ var RESERVA = [
     caixa.innerHTML = "";
     var hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     var ativos = lista.filter(function (ev) { var f = dataFim(ev.fim); return !f || f >= hoje; });
-    ativos.sort(function (a, b) { var fa = dataFim(a.fim), fb = dataFim(b.fim); return (fa ? fa.getTime() : 9e15) - (fb ? fb.getTime() : 9e15); });
+    function chaveData(ev) { var f = dataFim(ev.fim); if (!f) { return [9e15, 9e15]; } var i = dataFim(ev.inicio) || f; return [Math.max(i.getTime(), hoje.getTime() + 86399000), f.getTime()]; }
+    ativos.sort(function (a, b) { var ka = chaveData(a), kb = chaveData(b); return (ka[0] - kb[0]) || (ka[1] - kb[1]); });
 
     ativos.forEach(function (ev, i) {
       var link = /^https?:\/\//i.test(ev.link || "") ? ev.link : null;
