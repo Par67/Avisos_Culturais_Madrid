@@ -127,7 +127,7 @@
   .nota.destaque:hover, .nota.destaque:focus { animation: none; }
   @media (hover: hover) {
     .notas { grid-auto-rows: 200px; }
-    .nota { height: 100%; align-self: start; padding-bottom: 14px; }
+    .nota { height: 100%; align-self: start; }
     .nota .desc, .nota .local, .nota .extra, .nota .ver { display: none; }
     .nota::after { content: "+"; position: absolute; left: 8px; bottom: 6px; width: 20px; height: 20px; line-height: 19px; border-radius: 50%; background: rgba(255,255,255,.7); font-size: 15px; font-weight: 700; color: #7A4E3A; }
     .nota:hover, .nota:focus { height: auto; min-height: 100%; }
@@ -135,7 +135,33 @@
     .nota:hover .desc, .nota:focus .desc, .nota:hover .local, .nota:focus .local, .nota:hover .ver, .nota:focus .ver { display: block; }
     .nota:hover .extra, .nota:focus .extra { display: inline-block; }
     .nota.sobe { align-self: end; }
+    .nota { padding-bottom: 30px; }
+    .nota:hover, .nota:focus { padding-bottom: 12px; }
+    .nota h2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; text-underline-offset: 2px; margin-bottom: 6px; }
+    .nota:hover h2, .nota:focus h2 { display: block; overflow: visible; }
+    .nota { display: grid; grid-template-columns: 1fr auto; align-content: start; column-gap: 4px; }
+    .nota > .tipo, .nota > h2, .nota > .data, .nota > .desc, .nota > .local, .nota > .ver { grid-column: 1 / -1; }
+    .nota > .extra { grid-column: 1 / -1; justify-self: center; }
+    .nota > .tipo { grid-column: 1; grid-row: 1; align-self: center; text-align: left; }
+    .nota > .icone { grid-column: 2; grid-row: 1; font-size: 24px; margin: 0; }
+    .nota .data { font-size: 14px; }
   }
+
+  /* Símbolos e bandeiras para poupar texto */
+  .nota .icone { font-size: 26px; margin: 0 0 2px; }
+  .nota .data::before { content: "📅 "; }
+  .nota .extra::before { content: "🎟️ "; }
+  .bandeira { display: inline-block; position: relative; overflow: hidden; width: 21px; height: 14px; margin-right: 6px; vertical-align: -2px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.18); }
+  .b-pt { background: radial-gradient(circle at 40% 50%, #FFE000 0 3px, transparent 3.5px), linear-gradient(90deg, #046A38 40%, #DA291C 40%); }
+  .b-br { background: #009C3B; }
+  .b-br::before { content: ""; position: absolute; left: 4px; top: 1px; width: 13px; height: 12px; background: #FFDF00; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  .b-br::after { content: ""; position: absolute; left: 7.5px; top: 4px; width: 6px; height: 6px; border-radius: 50%; background: #002776; }
+  .b-cv { background: linear-gradient(180deg, #003893 50%, #fff 50% 58%, #CF2027 58% 67%, #fff 67% 75%, #003893 75%); }
+  .b-ao { background: radial-gradient(circle at 50% 50%, #FFCB00 0 2.5px, transparent 3px), linear-gradient(180deg, #CE1126 50%, #000 50%); }
+  .b-mz { background: linear-gradient(90deg, #D21034 0 30%, transparent 30%), linear-gradient(180deg, #007168 33%, #fff 33% 38%, #000 38% 62%, #fff 62% 67%, #FCE100 67%); }
+  .b-gw { background: radial-gradient(circle at 18% 50%, #000 0 2px, transparent 2.5px), linear-gradient(90deg, #CE1126 0 35%, transparent 35%), linear-gradient(180deg, #FCD116 50%, #009E49 50%); }
+  .b-st { background: linear-gradient(90deg, #D21034 0 28%, transparent 28%), linear-gradient(180deg, #12AD2B 30%, #FFCE00 30% 70%, #12AD2B 70%); }
+  .b-tl { background: linear-gradient(90deg, #000 0 25%, transparent 25%), linear-gradient(90deg, #FFC726 0 45%, #DC241F 45%); }
 </style>
 </head>
 <body>
@@ -152,7 +178,7 @@
   <main class="notas" id="notas">
     <a class="nota c-verde pautado" style="transform: rotate(-2deg);" href="https://salavillanos.es/evento/chico-chico/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>Chico Chico</h2>
       <div class="icone" aria-hidden="true">🎸</div>
       <div class="data">26 de novembro</div>
@@ -161,7 +187,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-roxo" style="transform: rotate(1.5deg);" href="https://www.madrid.org/fo/2026/not.html" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Dança · Cabo Verde</div>
+      <div class="tipo"><span class="bandeira b-cv" title="Cabo Verde" role="img" aria-label="Cabo Verde"></span>Dança</div>
       <h2>«NÔT», de Marlene Monteiro Freitas</h2>
       <div class="icone" aria-hidden="true">💃</div>
       <div class="data">27 e 28 de novembro</div>
@@ -170,7 +196,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-salmao" style="transform: rotate(-1deg);" href="https://www.instagram.com/rodadasminasmadrid/" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Roda de samba · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Roda de samba</div>
       <h2>Roda das Minas</h2>
       <div class="icone" aria-hidden="true">🎶</div>
       <div class="data">28 de novembro, das 19h30 às 21h30</div>
@@ -180,7 +206,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-amarelo pautado destaque" style="transform: rotate(2deg);" href="https://www.lacasaencendida.es/cine/los-joaos-presentan-su-nueva-pelicula-13-alfileres" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Cinema · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Cinema</div>
       <h2>«13 alfileres», de João Pedro Rodrigues e João Rui Guerra da Mata</h2>
       <div class="icone" aria-hidden="true">📌</div>
       <div class="data">28 de novembro, às 19h</div>
@@ -191,7 +217,7 @@
       <span class="selo">✨ A não perder</span><span class="faisca f1" aria-hidden="true">✨</span><span class="faisca f2" aria-hidden="true">✨</span><span class="faisca f3" aria-hidden="true">✨</span></a>
     <a class="nota c-ciano" style="transform: rotate(-1.5deg);" href="https://conciertos.club/madrid/conciertos/129535-caipirinha-society" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>Caipirinha Society</h2>
       <div class="icone" aria-hidden="true">🍹</div>
       <div class="data">28 de novembro, às 21h30</div>
@@ -201,7 +227,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-verde pautado" style="transform: rotate(1deg);" href="https://www.songkick.com/concerts/43402734-edimundo-santos-at-babylon-jazz-club" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>Edimundo Santos e Mauricio Caruso</h2>
       <div class="icone" aria-hidden="true">🎙️</div>
       <div class="data">29 de novembro</div>
@@ -211,7 +237,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-laranja" style="transform: rotate(-2deg);" href="https://madrid.embaixadaportugal.mne.gov.pt/files/Plano_de_atividades_2026.pdf" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Cinema · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Cinema</div>
       <h2>Festa do Cinema Português em Madrid</h2>
       <div class="icone" aria-hidden="true">🎬</div>
       <div class="data">5 e 6 de dezembro</div>
@@ -220,7 +246,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-ciano" style="transform: rotate(1.5deg);" href="https://cafecentralmadrid.com/en/events/alba-santos-a-nossa-bossa-eb926a79/" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>«Na textura de Elis»</h2>
       <div class="icone" aria-hidden="true">🎷</div>
       <div class="data">9 e 10 de dezembro, às 20h e às 22h</div>
@@ -229,7 +255,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-lavanda" style="transform: rotate(-1deg);" href="https://www.taquilla.com/entradas/toninho-horta?t10cityorder=Madrid" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>Toninho Horta</h2>
       <div class="icone" aria-hidden="true">🎸</div>
       <div class="data">16 de dezembro, às 20h</div>
@@ -239,7 +265,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-amarelo pautado" style="transform: rotate(2deg);" href="https://www.uam.es/uam/ciclodegrandesautoreseinterpretesuam-54-concierto4" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Concerto · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
       <h2>«O Messias», de Händel, com Os Músicos do Tejo</h2>
       <div class="icone" aria-hidden="true">🎻</div>
       <div class="data">19 de dezembro, às 19h</div>
@@ -249,7 +275,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-lavanda" style="transform: rotate(-1.5deg);" href="https://arteshoy.com/travesia-cuatro-eleonore-koch-claudia-pages-rabal/" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Exposição · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Exposição</div>
       <h2>Eleonore Koch, «Querida Lore»</h2>
       <div class="icone" aria-hidden="true">🖼️</div>
       <div class="data">Até 30 de dezembro</div>
@@ -258,7 +284,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-verde pautado" style="transform: rotate(1deg);" href="https://pedrocera.com/exhibitions/upcoming" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Exposição · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Exposição</div>
       <h2>Gabriel Abrantes, «Juego de niños»</h2>
       <div class="icone" aria-hidden="true">🧸</div>
       <div class="data">A partir de 28 de novembro</div>
@@ -267,7 +293,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-salmao" style="transform: rotate(-2deg);" href="https://salgadoaquamater.com/informacion-practica/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Exposição · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Exposição</div>
       <h2>Sebastião Salgado, «Aqua Mater»</h2>
       <div class="icone" aria-hidden="true">📷</div>
       <div class="data">Até 31 de janeiro de 2027</div>
@@ -276,7 +302,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-roxo" style="transform: rotate(1.5deg);" href="https://www.songkick.com/concerts/43253176-ana-lua-caiano-at-sala-clamores" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Concerto · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
       <h2>Ana Lua Caiano</h2>
       <div class="icone" aria-hidden="true">🎛️</div>
       <div class="data">4 de fevereiro de 2027, às 20h</div>
@@ -286,7 +312,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-ciano" style="transform: rotate(-1deg);" href="https://www.entradas.com/event/salvador-sobral-inverfest-madrid-2027-umusic-hotel-teatro-albeniz-22327555/" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Concerto · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
       <h2>Salvador Sobral</h2>
       <div class="icone" aria-hidden="true">🎤</div>
       <div class="data">6 de fevereiro de 2027</div>
@@ -296,7 +322,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-lavanda destaque" style="transform: rotate(2deg);" href="https://salavillanos.es/evento/carolina-deslandes/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Concerto · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Concerto</div>
       <h2>Carolina Deslandes</h2>
       <div class="icone" aria-hidden="true">🎶</div>
       <div class="data">9 de fevereiro de 2027</div>
@@ -306,7 +332,7 @@
       <span class="selo">✨ A não perder</span><span class="faisca f1" aria-hidden="true">✨</span><span class="faisca f2" aria-hidden="true">✨</span><span class="faisca f3" aria-hidden="true">✨</span></a>
     <a class="nota c-amarelo pautado" style="transform: rotate(-1.5deg);" href="https://www.instituto-camoes.pt/activity/o-que-fazemos/cultura-portuguesa/agenda/madrid-exposicao-camoes-vida-obra-e-permanencia-na-cultura-hispanica-na-biblioteca-nacional-de-espanha" target="_blank" rel="noopener">
       <span class="fita e f-ciano"></span><span class="fita d f-rosa"></span>
-      <div class="tipo">Exposição · Portugal</div>
+      <div class="tipo"><span class="bandeira b-pt" title="Portugal" role="img" aria-label="Portugal"></span>Exposição</div>
       <h2>«Camões: vida, obra e permanência na cultura hispânica»</h2>
       <div class="icone" aria-hidden="true">📜</div>
       <div class="data">Até 14 de fevereiro de 2027</div>
@@ -315,7 +341,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-laranja" style="transform: rotate(1deg);" href="https://www.elcorteingles.es/entradas/conciertos/entradas-jorge-vercillo-madrid-60878608781997/" target="_blank" rel="noopener">
       <span class="fita e f-rosa"></span><span class="fita d f-ouro"></span>
-      <div class="tipo">Concerto · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Concerto</div>
       <h2>Jorge Vercillo</h2>
       <div class="icone" aria-hidden="true">🎵</div>
       <div class="data">22 de fevereiro de 2027</div>
@@ -325,7 +351,7 @@
       <span class="ver">Ver informação →</span></a>
     <a class="nota c-roxo" style="transform: rotate(-2deg);" href="https://www.instagram.com/malokaasociacionbrasileira/" target="_blank" rel="noopener">
       <span class="fita e f-ouro"></span><span class="fita d f-ciano"></span>
-      <div class="tipo">Música ao vivo · Brasil</div>
+      <div class="tipo"><span class="bandeira b-br" title="Brasil" role="img" aria-label="Brasil"></span>Música ao vivo</div>
       <h2>Maloka</h2>
       <div class="icone" aria-hidden="true">🥁</div>
       <div class="data">Todas as semanas</div>
@@ -685,6 +711,20 @@ var RESERVA = [
   document.addEventListener("mouseover", origemZoom);
   document.addEventListener("focusin", origemZoom);
 
+  /* «Concerto · Brasil» passa a: bandeira do Brasil + «Concerto» */
+  var PAISES = { "portugal":"pt", "brasil":"br", "cabo verde":"cv", "angola":"ao", "mocambique":"mz", "guine-bissau":"gw", "sao tome e principe":"st", "timor-leste":"tl" };
+  function tipoComBandeiras(tipo) {
+    var d = el("div", "tipo"), partes = String(tipo).split(" · "), resto = [];
+    partes.forEach(function (p, i) {
+      var nomes = i ? p.split(/ e |, /) : [], codigos = nomes.map(function (n) { return PAISES[semAcento(n)]; });
+      if (i && codigos.every(Boolean)) {
+        codigos.forEach(function (c, k) { var b = el("span", "bandeira b-" + c); b.setAttribute("title", nomes[k]); b.setAttribute("role", "img"); b.setAttribute("aria-label", nomes[k]); d.appendChild(b); });
+      } else { resto.push(p); }
+    });
+    d.appendChild(document.createTextNode(resto.join(" · ")));
+    return d;
+  }
+
   function desenhar(lista) {
     var caixa = document.getElementById("notas");
     caixa.innerHTML = "";
@@ -704,7 +744,7 @@ var RESERVA = [
 
       var f1 = el("span", "fita e " + FITAS[i % 3]), f2 = el("span", "fita d " + FITAS[(i + 1) % 3]);
       nota.appendChild(f1); nota.appendChild(f2);
-      if (ev.tipo) { nota.appendChild(el("div", "tipo", ev.tipo)); }
+      if (ev.tipo) { nota.appendChild(tipoComBandeiras(ev.tipo)); }
       nota.appendChild(el("h2", "", ev.titulo));
       if (ev.icone) { var ic = el("div", "icone", ev.icone); ic.setAttribute("aria-hidden", "true"); nota.appendChild(ic); }
       if (ev.data) { nota.appendChild(el("div", "data", ev.data)); }
