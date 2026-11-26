@@ -120,6 +120,11 @@
   .nota .extra { margin-top: 6px; font-size: 12px; }
   .nota .ver { margin-top: 6px; font-size: 12px; }
   .rodape { margin-top: 26px; }
+
+  /* Ao passar o rato, a nota aumenta para se ler melhor */
+  .nota { transition: transform .25s ease, box-shadow .25s ease; }
+  .nota:hover, .nota:focus { transform: rotate(0deg) scale(1.35) !important; z-index: 20; box-shadow: 6px 14px 26px rgba(60,40,20,.35); }
+  .nota.destaque:hover, .nota.destaque:focus { animation: none; }
 </style>
 </head>
 <body>
@@ -640,6 +645,18 @@ var RESERVA = [
   window.addEventListener("load", function () { ajustarAltura(); setTimeout(ajustarAltura, 600); setTimeout(ajustarAltura, 2000); });
   window.addEventListener("resize", function () { setTimeout(ajustarAltura, 150); });
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(ajustarAltura); }
+
+  /* A nota aumentada não sai do quadro: cresce para dentro nas margens. */
+  function origemZoom(e) {
+    var n = e.target.closest && e.target.closest(".nota"); if (!n) { return; }
+    var r = n.getBoundingClientRect(), w = document.documentElement.clientWidth;
+    var fundo = document.documentElement.scrollHeight - (r.bottom + window.scrollY);
+    var x = r.left < 60 ? "left" : (w - r.right < 60 ? "right" : "center");
+    var y = fundo < 160 ? "bottom" : (r.top + window.scrollY < 260 ? "top" : "center");
+    n.style.transformOrigin = x + " " + y;
+  }
+  document.addEventListener("mouseover", origemZoom);
+  document.addEventListener("focusin", origemZoom);
 
   function desenhar(lista) {
     var caixa = document.getElementById("notas");
