@@ -121,10 +121,21 @@
   .nota .ver { margin-top: 6px; font-size: 12px; }
   .rodape { margin-top: 26px; }
 
-  /* Ao passar o rato, a nota aumenta para se ler melhor */
+  /* Notas resumidas: só o principal; ao passar o rato, a nota aumenta e mostra tudo */
   .nota { transition: transform .25s ease, box-shadow .25s ease; }
-  .nota:hover, .nota:focus { transform: rotate(0deg) scale(1.35) !important; z-index: 20; box-shadow: 6px 14px 26px rgba(60,40,20,.35); }
+  .nota:hover, .nota:focus { transform: rotate(0deg) scale(1.2) !important; z-index: 20; box-shadow: 6px 14px 26px rgba(60,40,20,.35); }
   .nota.destaque:hover, .nota.destaque:focus { animation: none; }
+  @media (hover: hover) {
+    .notas { grid-auto-rows: 200px; }
+    .nota { height: 100%; align-self: start; padding-bottom: 14px; }
+    .nota .desc, .nota .local, .nota .extra, .nota .ver { display: none; }
+    .nota::after { content: "+"; position: absolute; left: 8px; bottom: 6px; width: 20px; height: 20px; line-height: 19px; border-radius: 50%; background: rgba(255,255,255,.7); font-size: 15px; font-weight: 700; color: #7A4E3A; }
+    .nota:hover, .nota:focus { height: auto; min-height: 100%; }
+    .nota:hover::after, .nota:focus::after { display: none; }
+    .nota:hover .desc, .nota:focus .desc, .nota:hover .local, .nota:focus .local, .nota:hover .ver, .nota:focus .ver { display: block; }
+    .nota:hover .extra, .nota:focus .extra { display: inline-block; }
+    .nota.sobe { align-self: end; }
+  }
 </style>
 </head>
 <body>
@@ -648,13 +659,29 @@ var RESERVA = [
 
   /* A nota aumentada não sai do quadro: cresce para dentro nas margens. */
   function origemZoom(e) {
-    var n = e.target.closest && e.target.closest(".nota"); if (!n) { return; }
+    var n = e.target.closest && e.target.closest(".nota"); if (!n || n.classList.contains("aberta")) { return; }
     var r = n.getBoundingClientRect(), w = document.documentElement.clientWidth;
-    var fundo = document.documentElement.scrollHeight - (r.bottom + window.scrollY);
+    var notas = document.querySelectorAll(".nota"), ultimo = notas[notas.length - 1].getBoundingClientRect();
+    var baixo = r.top > ultimo.top - 40 && notas.length > 4;
     var x = r.left < 60 ? "left" : (w - r.right < 60 ? "right" : "center");
-    var y = fundo < 160 ? "bottom" : (r.top + window.scrollY < 260 ? "top" : "center");
-    n.style.transformOrigin = x + " " + y;
+    n.classList.toggle("sobe", baixo);
+    n.style.transformOrigin = x + " " + (baixo ? "bottom" : "top");
   }
+  /* Altura igual para todas as notas resumidas: a da mais alta. */
+  function alturaNotas() {
+    if (!window.matchMedia || !window.matchMedia("(hover: hover)").matches) { return; }
+    var caixa = document.getElementById("notas"), max = 0;
+    caixa.style.gridAutoRows = "auto";
+    var ns = caixa.querySelectorAll(".nota");
+    for (var i = 0; i < ns.length; i++) { ns[i].style.height = "auto"; }
+    for (i = 0; i < ns.length; i++) { max = Math.max(max, ns[i].offsetHeight); }
+    for (i = 0; i < ns.length; i++) { ns[i].style.height = ""; }
+    if (max) { caixa.style.gridAutoRows = max + "px"; }
+    ajustarAltura();
+  }
+  window.addEventListener("load", alturaNotas);
+  window.addEventListener("resize", function () { setTimeout(alturaNotas, 150); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(alturaNotas); }
   document.addEventListener("mouseover", origemZoom);
   document.addEventListener("focusin", origemZoom);
 
@@ -693,7 +720,7 @@ var RESERVA = [
       caixa.appendChild(nota);
     });
     document.getElementById("vazio").style.display = ativos.length ? "none" : "block";
-    ajustarAltura();
+    alturaNotas();
   }
 
   if (!FOLHA_CSV) { desenhar(RESERVA); return; }
