@@ -106,6 +106,20 @@
   @keyframes brilhar { 0%, 100% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 0 0 rgba(232,178,58,0); } 50% { box-shadow: 2px 6px 10px rgba(60,40,20,.2), 0 0 18px 6px rgba(232,178,58,.75); } }
   @keyframes cintilar { 0%, 100% { opacity: .15; transform: scale(.6) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
   @media (prefers-reduced-motion: reduce) { .nota.destaque, .nota .faisca { animation: none; } .nota.destaque { box-shadow: 0 0 14px 4px rgba(232,178,58,.7); } }
+  /* Quadro compacto: mais notas por linha para caber na janela do Moodle */
+  .quadro { max-width: 1400px; padding-top: 12px; }
+  .titulo { margin-bottom: 20px; }
+  .instrucao { margin-bottom: 20px; }
+  .notas { grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 24px 16px; }
+  .nota { padding: 18px 11px 11px; min-height: 0; }
+  .nota h2 { font-size: 15.5px; margin: 4px 0 6px; }
+  .nota .icone { font-size: 30px; margin: 2px 0 4px; }
+  .nota .data { font-size: 14.5px; }
+  .nota .desc, .nota .local { font-size: 12.5px; }
+  .nota .local { margin-top: 7px; padding: 5px 8px; }
+  .nota .extra { margin-top: 6px; font-size: 12px; }
+  .nota .ver { margin-top: 6px; font-size: 12px; }
+  .rodape { margin-top: 26px; }
 </style>
 </head>
 <body>
