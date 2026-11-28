@@ -36,8 +36,10 @@ html.embed #banner{aspect-ratio:auto;height:100vh;min-height:0;border-radius:0}
 .pop.on{transform:scale(1);opacity:1}
 .pop.fly{transition:transform .9s ease-in,opacity .9s ease-in}
 .pop img{display:block;margin:0 auto;height:clamp(56px,9.5vw,150px);max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25))}
-.pop b{display:block;margin-top:6px;font:800 clamp(14px,1.5vw,21px)/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
-.pop small{display:block;margin-top:6px;font:500 clamp(9px,.8vw,12px)/1.2 "DM Mono",monospace;color:#7b8c8e}
+.pop b{display:block;margin-top:4px;font:800 clamp(14px,1.5vw,21px)/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.pop em{display:block;margin-top:2px;font:500 clamp(10px,.85vw,12px)/1.2 "Instrument Sans",sans-serif;font-style:normal;color:#7b8c8e}
+.pop .word{margin-top:8px;padding:6px 8px 7px;border-radius:10px;background:#fbe9e2;border:1px dashed #e4572e}
+.pop small{display:block;font:500 clamp(9px,.8vw,12px)/1.2 "DM Mono",monospace;color:#7b8c8e}
 .pop span{display:block;margin-top:3px;font:600 clamp(12px,1.15vw,16px)/1.3 "Instrument Sans",sans-serif;color:#5f7173}
 .pop span i{color:var(--red);font-weight:700}
 .lead{stroke:rgba(255,255,255,.55);stroke-width:.7;stroke-dasharray:1.5 2;fill:none}
@@ -117,15 +119,15 @@ const NOTES=[523.25,587.33,659.25,783.99,880,1046.5,880,783.99,659.25];
 const COL={peri:'#e4572e',mint:'#f3a712',pink:'#e9c46a',steel:'#b5442a'};
 const COLD={peri:'#e4572e',mint:'#f3a712',pink:'#e9c46a',steel:'#b5442a'};
 const STOPS=[
-  {c:'GB',n:'United Kingdom',w:'skint',g:'broke',lat:51.5,lon:-0.13,k:'peri',d:'up',ix:440,iy:140},
-  {c:'IE',n:'Ireland',w:'giving out',g:'complaining',lat:53.35,lon:-6.26,k:'mint',d:'left',ix:382,iy:140},
-  {c:'CA',n:'Canada',w:'double-double',g:'coffee, two creams, two sugars',lat:45.42,lon:-75.7,k:'pink',d:'up',ix:208,iy:142},
-  {c:'US',n:'United States',w:'catty-corner',g:'diagonally opposite',lat:38.9,lon:-77.04,k:'steel',d:'left',ix:200,iy:196},
-  {c:'JM',n:'Jamaica',w:'nyam',g:'eat',lat:18.0,lon:-76.8,k:'peri',d:'down',ix:256,iy:246},
-  {c:'ZA',n:'South Africa',w:'robot',g:'traffic light',lat:-25.75,lon:28.19,k:'mint',d:'up',ix:500,iy:356},
-  {c:'IN',n:'India',w:'timepass',g:'killing time',lat:28.6,lon:77.2,k:'pink',d:'up',ix:616,iy:212},
-  {c:'AU',n:'Australia',w:'doona',g:'duvet',lat:-35.3,lon:149.1,k:'steel',d:'up',ix:782,iy:376},
-  {c:'NZ',n:'New Zealand',w:'chilly bin',g:'cool box',lat:-41.3,lon:174.8,k:'peri',d:'up',ix:866,iy:394}
+  {c:'GB',n:'United Kingdom',sym:'Big Ben',w:'knackered',g:'very tired',lat:51.5,lon:-0.13,k:'peri',d:'up',ix:440,iy:140},
+  {c:'IE',n:'Ireland',sym:'Shamrock',w:'grand',g:'fine, OK',lat:53.35,lon:-6.26,k:'mint',d:'left',ix:382,iy:140},
+  {c:'CA',n:'Canada',sym:'Maple leaf',w:'loonie',g:'one-dollar coin',lat:45.42,lon:-75.7,k:'pink',d:'up',ix:208,iy:142},
+  {c:'US',n:'United States',sym:'Statue of Liberty',w:'y\'all',g:'you all',lat:38.9,lon:-77.04,k:'steel',d:'left',ix:200,iy:196},
+  {c:'JM',n:'Jamaica',sym:'Palm tree',w:'irie',g:'great, fine',lat:18.0,lon:-76.8,k:'peri',d:'down',ix:256,iy:246},
+  {c:'ZA',n:'South Africa',sym:'Table Mountain',w:'braai',g:'barbecue',lat:-25.75,lon:28.19,k:'mint',d:'up',ix:500,iy:356},
+  {c:'IN',n:'India',sym:'Taj Mahal',w:'prepone',g:'bring forward',lat:28.6,lon:77.2,k:'pink',d:'up',ix:616,iy:212},
+  {c:'AU',n:'Australia',sym:'Sydney Opera House',w:'arvo',g:'afternoon',lat:-35.3,lon:149.1,k:'steel',d:'up',ix:782,iy:376},
+  {c:'NZ',n:'New Zealand',sym:'Kiwi bird',w:'sweet as',g:'great, no problem',lat:-41.3,lon:174.8,k:'peri',d:'up',ix:866,iy:394}
 ];
 
 /* Miller projection matching the jsVectorMap "world" map (central meridian 11.5) */
@@ -235,9 +237,11 @@ function popup(p){
   const my=run,d=document.createElement('div');d.className='pop';
   const im=document.createElement('img');im.src=ICONS[p.c].src;im.alt='';
   const b=document.createElement('b');b.textContent=p.n;
+  const sy=document.createElement('em');sy.textContent=p.sym;
+  const wd=document.createElement('div');wd.className='word';
+  const lw=document.createElement('small');lw.textContent='Locals say:';
   const sp=document.createElement('span');const it=document.createElement('i');it.textContent=p.w;sp.append(it,' = '+p.g);
-  const lw=document.createElement('small');lw.textContent='Local English word';
-  d.append(im,b,lw,sp);bn.appendChild(d);
+  wd.append(lw,sp);d.append(im,sy,b,wd);bn.appendChild(d);
   const r=bn.getBoundingClientRect(),pw=d.offsetWidth,ph=d.offsetHeight,s=scr(p.x,p.y);
   const L=Math.max(8,Math.min(r.width-pw-8,s.x-pw/2)),T=Math.max(8,Math.min(r.height-ph-8,s.y-ph-24));
   d.style.left=L+'px';d.style.top=T+'px';d.style.transformOrigin=`${s.x-L}px ${s.y-T}px`;
