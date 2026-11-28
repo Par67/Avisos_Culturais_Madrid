@@ -17,7 +17,7 @@
 *{box-sizing:border-box;min-width:0}
 html,body{margin:0;background:transparent}
 body{font:16px/1.5 "Instrument Sans",system-ui,sans-serif;color:var(--ink);overflow-x:clip}
-#banner{position:relative;width:100%;aspect-ratio:1500/470;min-height:180px;overflow:hidden;border-radius:18px;
+#banner{position:relative;width:100%;aspect-ratio:1500/790;min-height:180px;overflow:hidden;border-radius:18px;
   background:radial-gradient(120% 140% at 55% 40%,#17656b 0%,var(--ocean) 55%,#0a353a 100%)}
 #banner.pseudo-fs{position:fixed;inset:0;z-index:9999;border-radius:0;aspect-ratio:auto;height:100vh}
 html.embed #banner{aspect-ratio:auto;height:100vh;min-height:0;border-radius:0}
@@ -34,6 +34,13 @@ html.embed #banner{aspect-ratio:auto;height:100vh;min-height:0;border-radius:0}
   background-origin:border-box;background-clip:padding-box,border-box;
   transform:scale(.2);opacity:0;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .3s}
 .pop.on{transform:scale(1);opacity:1}
+.pop.pinned{z-index:8}
+.pop .x{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:#efe9dd;color:var(--ink);font:600 20px/1 sans-serif;cursor:pointer}
+.pop .x:focus-visible{outline:3px solid var(--saff);outline-offset:2px}
+.ico{cursor:pointer;outline:none}
+.ico image{transition:filter .2s}
+.ico:hover image,.ico:focus-visible image{filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #f3a712)}
+.hint{margin:clamp(3px,.5vw,6px) 0 0;font:500 clamp(8px,.75vw,11px)/1.2 "DM Mono",monospace;color:#7b8c8e}
 .pop.fly{transition:transform .9s ease-in,opacity .9s ease-in}
 .pop img{display:block;margin:0 auto;height:clamp(56px,9.5vw,150px);max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25))}
 .pop b{display:block;margin-top:4px;font:800 clamp(14px,1.5vw,21px)/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
@@ -97,6 +104,7 @@ h1 span{color:var(--red)}
     <p class="dept">English Department</p>
     <h1>English <span>C1</span></h1>
     <p class="teacher"><i></i>Teacher: María Méndez</p>
+    <p class="hint">Click a symbol to see it again</p>
   </div></div>
 
   <div class="ctrls">
@@ -159,7 +167,7 @@ try{if(W){const P=[];const add=(c,top,bot)=>{const e=cmap[c];if(!e)return;const 
     let sxy=0,sxx=0;P.forEach(p=>{sxy+=(p[0]-mx)*(p[1]-my);sxx+=(p[0]-mx)**2});const a=sxy/sxx;
     if(a>.6&&a<1.6){fa=a;fb=my-a*mx}}}}catch(e){}
 const Y=y=>fa*y+fb;
-{const y0=Y(proj(66,0).y),y1=Y(proj(-48,0).y);$('map').setAttribute('viewBox',`0 ${y0.toFixed(1)} 900 ${(y1-y0).toFixed(1)}`)}
+{const y0=Y(proj(83,0).y),y1=Y(proj(-56,0).y);$('map').setAttribute('viewBox',`0 ${y0.toFixed(1)} 900 ${(y1-y0).toFixed(1)}`)}
 STOPS.forEach(s=>{s.iy=Y(s.iy)});
 const pts=STOPS.map(s=>{const q=proj(s.lat,s.lon);return Object.assign({},s,{x:q.x,y:Y(q.y)})});
 const sg=$('stops');
@@ -190,8 +198,11 @@ NZ:{src:'data:image/webp;base64,UklGRnwZAABXRUJQVlA4WAoAAAAQAAAAywAAlQAAQUxQSBAL
 const ig=$('icons');
 function showIcon(p,instant){
   if(Math.hypot(p.ix-p.x,p.iy-p.y)>6)el('line',{x1:p.x,y1:p.y,x2:p.ix,y2:p.iy,class:'lead'},ig);
-  const g=el('g',{},ig);
+  const g=el('g',{class:'ico',tabindex:0,role:'button','aria-label':p.n+': '+p.sym},ig);
   const ic=ICONS[p.c],ih=ic.h,iw=ih*ic.ar;
+  el('rect',{x:-iw/2-5,y:-ih-5,width:iw+10,height:ih+10,fill:'transparent'},g);
+  g.addEventListener('click',e=>{e.stopPropagation();openPinned(p)});
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPinned(p)}});
   el('ellipse',{cx:0,cy:0,rx:Math.max(6,iw*.42),ry:2.2,fill:'rgba(0,0,0,.28)'},g);
   el('image',{href:ic.src,x:-iw/2,y:-ih,width:iw,height:ih},g);
   if(instant){g.setAttribute('transform',`translate(${p.ix},${p.iy})`);return}
@@ -233,25 +244,41 @@ function postmark(p){
 }
 const svg=$('map'),HOLD=4600;
 function scr(x,y){const pt=svg.createSVGPoint();pt.x=x;pt.y=y;const q=pt.matrixTransform(svg.getScreenCTM()),r=bn.getBoundingClientRect();return{x:q.x-r.left,y:q.y-r.top}}
-function popup(p){
-  const my=run,d=document.createElement('div');d.className='pop';
+function popup(p,pinned){
+  const my=run,d=document.createElement('div');d.className='pop'+(pinned?' pinned':'');
   const im=document.createElement('img');im.src=ICONS[p.c].src;im.alt='';
   const b=document.createElement('b');b.textContent=p.n;
   const sy=document.createElement('em');sy.textContent=p.sym;
   const wd=document.createElement('div');wd.className='word';
   const lw=document.createElement('small');lw.textContent='Locals say:';
   const sp=document.createElement('span');const it=document.createElement('i');it.textContent=p.w;sp.append(it,' = '+p.g);
-  wd.append(lw,sp);d.append(im,sy,b,wd);bn.appendChild(d);
-  const r=bn.getBoundingClientRect(),pw=d.offsetWidth,ph=d.offsetHeight,s=scr(p.x,p.y);
-  const L=Math.max(8,Math.min(r.width-pw-8,s.x-pw/2)),T=Math.max(8,Math.min(r.height-ph-8,s.y-ph-24));
+  wd.append(lw,sp);d.append(im,sy,b,wd);
+  if(pinned){const x=document.createElement('button');x.className='x';x.setAttribute('aria-label','Close');x.textContent='×';
+    x.addEventListener('click',e=>{e.stopPropagation();closePinned()});d.appendChild(x);d.addEventListener('click',e=>e.stopPropagation())}
+  bn.appendChild(d);
+  const r=bn.getBoundingClientRect(),pw=d.offsetWidth,ph=d.offsetHeight,s=pinned?scr(p.ix,p.iy-ICONS[p.c].h):scr(p.x,p.y);
+  let T=s.y-ph-14;if(pinned&&T<8)T=scr(p.ix,p.iy).y+10;
+  const L=Math.max(8,Math.min(r.width-pw-8,s.x-pw/2));T=Math.max(8,Math.min(r.height-ph-8,T));
   d.style.left=L+'px';d.style.top=T+'px';d.style.transformOrigin=`${s.x-L}px ${s.y-T}px`;
   requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.add('on')));
+  if(pinned){d.querySelector('.x').focus({preventScroll:true});return d}
   setTimeout(()=>{if(my!==run){d.remove();return}
     const t=scr(p.ix,p.iy-ICONS[p.c].h/2);
     d.style.transformOrigin='50% 50%';d.classList.add('fly');
     d.style.transform=`translate(${t.x-(L+pw/2)}px,${t.y-(T+ph/2)}px) scale(.12)`;d.style.opacity='0';
     setTimeout(()=>{d.remove();if(my===run)showIcon(p)},880);
   },HOLD-950);
+}
+let tourOn=false,pinnedEl=null;
+function closePinned(){if(pinnedEl){pinnedEl.remove();pinnedEl=null}}
+function showAll(){
+  run++;alive=run;tourOn=false;reset();
+  pts.forEach(p=>{if(cmap[p.c])cmap[p.c].style.fill=COL[p.k];p.dot.setAttribute('opacity',1);showIcon(p,true)});
+  ball.setAttribute('opacity',0);
+}
+function openPinned(p){
+  if(tourOn)showAll();
+  closePinned();pinnedEl=popup(p,true);
 }
 function land(p,v){
   if(cmap[p.c])cmap[p.c].style.fill=COL[p.k];
@@ -268,7 +295,7 @@ function setBall(x,y,h,sx,sy,rot){
   const s=Math.max(.35,1-h/150);shadow.setAttribute('rx',6*s);shadow.setAttribute('ry',2*s);shadow.setAttribute('opacity',0);
 }
 function reset(){
-  tg.innerHTML='';lg.innerHTML='';ig.innerHTML='';bn.querySelectorAll('.pop').forEach(e=>e.remove());
+  tg.innerHTML='';lg.innerHTML='';ig.innerHTML='';bn.querySelectorAll('.pop').forEach(e=>e.remove());pinnedEl=null;
   for(const k in cmap)cmap[k].style.fill='';
   pts.forEach(p=>p.dot.setAttribute('opacity',.45));
 }
@@ -285,6 +312,7 @@ function play(){
   reset();
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce){pts.forEach(p=>{if(cmap[p.c])cmap[p.c].style.fill=COL[p.k];p.dot.setAttribute('opacity',1);showIcon(p,true)});ball.setAttribute('opacity',1);const z=pts[pts.length-1];setBall(z.x,z.y,0,1,1,0);return}
+  tourOn=true;
   const legs=buildLegs();let li=0,t0=null,rot=0,last=null,squash=0;
   ball.setAttribute('opacity',1);
   const first=pts[0];setBall(first.x,first.y,0,1,1,0);
@@ -297,7 +325,7 @@ function play(){
     if(t>=1){
       land(L.land);
       squash=now;li++;t0=now+HOLD;
-      if(li>=legs.length){const z=pts[pts.length-1];setBall(z.x,z.y,0,1,1,0);setTimeout(()=>{if(my===run)ball.setAttribute('opacity',0)},700);return}
+      if(li>=legs.length){const z=pts[pts.length-1];setBall(z.x,z.y,0,1,1,0);tourOn=false;setTimeout(()=>{if(my===run)ball.setAttribute('opacity',0)},700);return}
       requestAnimationFrame(step);return;
     }
     const e=t<.5?2*t*t:1-(-2*t+2)**2/2;
@@ -327,7 +355,8 @@ $('fs').addEventListener('click',async()=>{
   try{await bn.requestFullscreen();fsIcon(true)}catch(e){if(document.documentElement.classList.contains('embed')){const w=window.open(location.href,'_blank');if(w)return}bn.classList.add('pseudo-fs');fsIcon(true)}
 });
 document.addEventListener('fullscreenchange',()=>fsIcon(!!document.fullscreenElement||bn.classList.contains('pseudo-fs')));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&bn.classList.contains('pseudo-fs')){bn.classList.remove('pseudo-fs');fsIcon(false)}});
+bn.addEventListener('click',()=>closePinned());
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePinned();if(e.key==='Escape'&&bn.classList.contains('pseudo-fs')){bn.classList.remove('pseudo-fs');fsIcon(false)}});
 
 (document.fonts?document.fonts.ready:Promise.resolve()).then(play);
 }
