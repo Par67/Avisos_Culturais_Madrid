@@ -17,7 +17,7 @@
 *{box-sizing:border-box;min-width:0}
 html,body{margin:0;background:transparent}
 body{font:16px/1.5 "Instrument Sans",system-ui,sans-serif;color:var(--ink);overflow-x:clip}
-#banner{position:relative;width:100%;aspect-ratio:1500/560;min-height:220px;overflow:hidden;border-radius:18px;
+#banner{position:relative;width:100%;aspect-ratio:1500/470;min-height:180px;overflow:hidden;border-radius:18px;
   background:radial-gradient(120% 140% at 55% 40%,#17656b 0%,var(--ocean) 55%,#0a353a 100%)}
 #banner.pseudo-fs{position:fixed;inset:0;z-index:9999;border-radius:0;aspect-ratio:auto;height:100vh}
 html.embed #banner{aspect-ratio:auto;height:100vh;min-height:0;border-radius:0}
@@ -35,7 +35,7 @@ html.embed #banner{aspect-ratio:auto;height:100vh;min-height:0;border-radius:0}
   transform:scale(.2);opacity:0;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .3s}
 .pop.on{transform:scale(1);opacity:1}
 .pop.fly{transition:transform .9s ease-in,opacity .9s ease-in}
-.pop img{display:block;margin:0 auto;height:clamp(70px,12vw,170px);max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25))}
+.pop img{display:block;margin:0 auto;height:clamp(56px,9.5vw,150px);max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25))}
 .pop b{display:block;margin-top:6px;font:800 clamp(14px,1.5vw,21px)/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
 .pop small{display:block;margin-top:6px;font:500 clamp(9px,.8vw,12px)/1.2 "DM Mono",monospace;color:#7b8c8e}
 .pop span{display:block;margin-top:3px;font:600 clamp(12px,1.15vw,16px)/1.3 "Instrument Sans",sans-serif;color:#5f7173}
@@ -157,7 +157,7 @@ try{if(W){const P=[];const add=(c,top,bot)=>{const e=cmap[c];if(!e)return;const 
     let sxy=0,sxx=0;P.forEach(p=>{sxy+=(p[0]-mx)*(p[1]-my);sxx+=(p[0]-mx)**2});const a=sxy/sxx;
     if(a>.6&&a<1.6){fa=a;fb=my-a*mx}}}}catch(e){}
 const Y=y=>fa*y+fb;
-{const y0=Y(proj(73,0).y),y1=Y(proj(-48,0).y);$('map').setAttribute('viewBox',`0 ${y0.toFixed(1)} 900 ${(y1-y0).toFixed(1)}`)}
+{const y0=Y(proj(66,0).y),y1=Y(proj(-48,0).y);$('map').setAttribute('viewBox',`0 ${y0.toFixed(1)} 900 ${(y1-y0).toFixed(1)}`)}
 STOPS.forEach(s=>{s.iy=Y(s.iy)});
 const pts=STOPS.map(s=>{const q=proj(s.lat,s.lon);return Object.assign({},s,{x:q.x,y:Y(q.y)})});
 const sg=$('stops');
